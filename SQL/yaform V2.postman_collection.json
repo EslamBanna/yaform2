@@ -7,7 +7,245 @@
 	"item": [
 		{
 			"name": "authentication",
-			"item": []
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"es@gmail.com\",\r\n    \"password\": \"eslam123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/unauth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"unauth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "eslam elbanna",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "eslam@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0123456789",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "eslam",
+									"type": "text"
+								},
+								{
+									"key": "num_of_employees",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "img_src",
+									"type": "file",
+									"src": "/E:/WhatsApp Image 2021-09-25 at 1.33.08 AM.jpeg"
+								},
+								{
+									"key": "url",
+									"value": "https://web.facebook.com/",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "tanta",
+									"type": "text"
+								},
+								{
+									"key": "business_category",
+									"value": "programming",
+									"type": "text"
+								},
+								{
+									"key": "year_dob",
+									"value": "2000",
+									"type": "text"
+								},
+								{
+									"key": "month_dob",
+									"value": "01",
+									"type": "text"
+								},
+								{
+									"key": "day_dob",
+									"value": "25",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/api/unauth/sign-up",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"unauth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get my info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQwODAxMzgxLCJleHAiOjE2NDA4MDQ5ODEsIm5iZiI6MTY0MDgwMTM4MSwianRpIjoibGVSZkY3cnZJY2doUmpRayIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.mNFgELCTjt6DF2WrPOGAEnPVbusjfVMDhBRkL19_LMg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/auth/get-my-info",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"get-my-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update my info",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQwODAxMzgxLCJleHAiOjE2NDA4MDQ5ODEsIm5iZiI6MTY0MDgwMTM4MSwianRpIjoibGVSZkY3cnZJY2doUmpRayIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.mNFgELCTjt6DF2WrPOGAEnPVbusjfVMDhBRkL19_LMg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "eslam elbanna2",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "eslam@gmail.com2",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "01234567892",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "eslam",
+									"type": "text"
+								},
+								{
+									"key": "num_of_employees",
+									"value": "52",
+									"type": "text"
+								},
+								{
+									"key": "img_src",
+									"type": "file",
+									"src": "/E:/room/66496565_2341459482738746_1189081126329647104_n.jpg",
+									"disabled": true
+								},
+								{
+									"key": "url",
+									"value": "https://web.facebook.com/",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "tanta",
+									"type": "text"
+								},
+								{
+									"key": "business_category",
+									"value": "programming",
+									"type": "text"
+								},
+								{
+									"key": "year_dob",
+									"value": "2000",
+									"type": "text"
+								},
+								{
+									"key": "month_dob",
+									"value": "01",
+									"type": "text"
+								},
+								{
+									"key": "day_dob",
+									"value": "25",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/update-my-info",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"update-my-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
