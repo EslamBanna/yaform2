@@ -272,6 +272,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get reset password code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/unauth/get-reset-password-code",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"unauth",
+								"get-reset-password-code"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

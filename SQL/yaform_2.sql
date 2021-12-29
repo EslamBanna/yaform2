@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2021 at 08:07 PM
+-- Generation Time: Dec 29, 2021 at 09:51 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.5
 
@@ -54,10 +54,10 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(9, '2014_10_12_000000_create_users_table', 1),
-(10, '2014_10_12_100000_create_password_resets_table', 1),
-(11, '2019_08_19_000000_create_failed_jobs_table', 1),
-(12, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(13, '2014_10_12_000000_create_users_table', 1),
+(14, '2014_10_12_100000_create_password_resets_table', 1),
+(15, '2019_08_19_000000_create_failed_jobs_table', 1),
+(16, '2019_12_14_000001_create_personal_access_tokens_table', 1);
 
 -- --------------------------------------------------------
 
@@ -111,6 +111,7 @@ CREATE TABLE `users` (
   `day_dob` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reset_password_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -120,9 +121,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `type`, `name`, `phone`, `email`, `num_of_employees`, `img_src`, `url`, `country`, `business_category`, `year_dob`, `month_dob`, `day_dob`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 0, 'eslam elbanna2', '01234567892', 'eslam@gmail.com2', 52, 'd7IEzdKMOzh5gL8E4F07dFuVkVOBicHTQ2XEryBF.jpg', 'https://web.facebook.com/', 'tanta', 'programming', '2000', '01', '25', NULL, '$2y$10$jin0wLw/sj0byAs1ut3.A.543lgjtyrRmuryWKFkcAIzrk9dbk2C.', NULL, '2021-12-29 14:37:02', '2021-12-29 16:41:20'),
-(4, 0, 'eslam elbanna', '0123456789', 'eslam@gmail.com', 5, '', 'https://web.facebook.com/', 'tanta', 'programming', '2000', '01', '25', NULL, '$2y$10$/EINrMU3Kd6ucRmsGPy.C.YUNr8aaKKquuqk0s1PsQKLqvl4T7yky', NULL, '2021-12-29 16:08:50', '2021-12-29 16:08:50');
+INSERT INTO `users` (`id`, `type`, `name`, `phone`, `email`, `num_of_employees`, `img_src`, `url`, `country`, `business_category`, `year_dob`, `month_dob`, `day_dob`, `email_verified_at`, `password`, `reset_password_code`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 0, 'eslam elbanna', '0123456789', 'solombana2000@gmail.com', 5, '', 'https://web.facebook.com/', 'tanta', 'programming', '2000', '01', '25', NULL, '$2y$10$sg8VI.vbhz7IDwEl7sizNew2uJ9fXhyH3.vJQVZ3asgPOCxt6w8XG', '172665', NULL, '2021-12-29 17:36:29', '2021-12-29 18:11:15');
 
 --
 -- Indexes for dumped tables
@@ -177,7 +177,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -189,7 +189,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
