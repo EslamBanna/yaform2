@@ -30,6 +30,6 @@ Route::group(['prefix' => 'unauth'], function () {
 
 
 Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api'], function () {
-    Route::post('/test', [UserContoller::class, 'test']);
+    Route::get('/test', [UserContoller::class, 'test']);
     Route::post('/logout', [UserContoller::class, 'logout']);
 });

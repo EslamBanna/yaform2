@@ -6,14 +6,13 @@ use Illuminate\Http\Request;
 use Validator;
 use Auth;
 use DateTime;
-use JWTAuth;
+// use JWTAuth;
 use DB;
 use Carbon;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 trait GeneralTrait
 {
-
-
 
     public function saveImage($photo, $folder)
     {
@@ -22,27 +21,6 @@ trait GeneralTrait
         // $path = 'images/' . $folder . '/' . $filename;
         return $filename;
     }
-
-    public function me()
-    {
-        return response()->json(auth()->user());
-    }
-
-    public function logout(Request $request)
-    {
-        try {
-            $token = $request->header('authToken');
-            if ($token) {
-                JWTAuth::setToken($token)->invalidate();
-                return $this->returnSuccessMessage('success');
-            } else {
-                return $this->returnError('E205', 'fail');
-            }
-        } catch (\Exception $e) {
-            return $this->returnError('E205', 'fail');
-        }
-    }
-
     public function returnError($errNum, $msg)
     {
         return response()->json([
@@ -51,8 +29,6 @@ trait GeneralTrait
             'msg' => $msg
         ]);
     }
-
-
     public function returnSuccessMessage($msg = "", $errNum = "S000")
     {
         return [

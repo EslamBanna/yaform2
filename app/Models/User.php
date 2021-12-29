@@ -21,7 +21,16 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
+        'num_of_employees',
+        'img_src',
+        'url',
+        'country',
+        'business_category',
+        'year_dob',
+        'month_dob',
+        'day_dob'
     ];
 
     /**
@@ -56,5 +65,11 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function getImgSrcAttribute($value)
+    {
+        $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+        return ($value == null ? '' : $actual_link . 'images/users/' . $value);
     }
 }
