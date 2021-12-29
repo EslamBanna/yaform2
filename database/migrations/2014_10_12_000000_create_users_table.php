@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('day_dob')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('reset_password_code')->nullable();
             $table->rememberToken();
             // $table->timestamps();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

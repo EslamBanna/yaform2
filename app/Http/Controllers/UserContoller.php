@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerficationMail;
 use App\Models\User;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -131,6 +133,50 @@ class UserContoller extends Controller
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
             DB::rollback();
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        try {
+            $rules = [
+                'email' => 'required|email'
+            ];
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
+            $user = User::where('email', $request->email)->first();
+            if (!$user) {
+                return $this->returnError('202', 'user not founded');
+            }
+            $code =  rand(100000, 999999);
+            $user->update([
+                'reset_password_code' => $code
+            ]);
+            // send mail
+            $reset_link = "facebook.com";
+            Mail::to($request->email)->send(new VerficationMail($code, $user->name, $user->email, $reset_link));
+            return $this->returnSuccessMessage('success');
+        } catch (\Exception $e) {
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function getResetPasswordCode(Request $request)
+    {
+        try {
+            if (!$request->has('user_id')) {
+                return $this->returnError('202', 'input user id');
+            }
+            $user = User::find($request->user_id);
+            if (!$user) {
+                return $this->returnError('202', 'user not founded');
+            }
+            return $this->returnData('data', $user->reset_password_code);
+        } catch (\Exception $e) {
             return $this->returnError('201', $e->getMessage());
         }
     }

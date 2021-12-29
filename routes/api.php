@@ -23,6 +23,9 @@ Route::group(['prefix' => 'unauth'], function () {
     Route::post('/sign-up', [UserContoller::class, 'signUp']);
     Route::post('/login', [UserContoller::class, 'login']);
     Route::post('/forget-password', [UserContoller::class, 'forgetPassword']);
+    Route::post('/get-reset-password-code', [UserContoller::class, 'getResetPasswordCode']);
+
+
 });
 
 

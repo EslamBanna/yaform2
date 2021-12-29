@@ -30,7 +30,8 @@ class User extends Authenticatable implements JWTSubject
         'business_category',
         'year_dob',
         'month_dob',
-        'day_dob'
+        'day_dob',
+        'reset_password_code'
     ];
 
     /**

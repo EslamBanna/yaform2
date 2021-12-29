@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"es@gmail.com\",\r\n    \"password\": \"eslam123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"eslam@gmail.com\",\r\n    \"password\": \"eslam\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -195,8 +195,7 @@
 								{
 									"key": "img_src",
 									"type": "file",
-									"src": "/E:/room/66496565_2341459482738746_1189081126329647104_n.jpg",
-									"disabled": true
+									"src": "/E:/room/72779452_2442660059285354_2575188882316328960_n.jpg"
 								},
 								{
 									"key": "url",
@@ -240,6 +239,35 @@
 								"api",
 								"auth",
 								"update-my-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forget password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"solombana2000@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/unauth/forget-password",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"unauth",
+								"forget-password"
 							]
 						}
 					},
