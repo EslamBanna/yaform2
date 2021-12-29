@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"eslam@gmail.com\",\r\n    \"password\": \"eslam\"\r\n}",
+							"raw": "{\r\n    \"email\": \"solombana2000@gmail.com\",\r\n    \"password\": \"eslam\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,11 +23,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/unauth/login",
+							"raw": "https://wework-backend.yaforms.com/api/unauth/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"wework-backend",
+								"yaforms",
+								"com"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
@@ -113,11 +115,13 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/unauth/sign-up",
+							"raw": "https://wework-backend.yaforms.com/api/unauth/sign-up",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"wework-backend",
+								"yaforms",
+								"com"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
@@ -134,16 +138,18 @@
 						"header": [
 							{
 								"key": "authToken",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQwODAxMzgxLCJleHAiOjE2NDA4MDQ5ODEsIm5iZiI6MTY0MDgwMTM4MSwianRpIjoibGVSZkY3cnZJY2doUmpRayIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.mNFgELCTjt6DF2WrPOGAEnPVbusjfVMDhBRkL19_LMg",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd2V3b3JrLWJhY2tlbmQueWFmb3Jtcy5jb21cL2FwaVwvdW5hdXRoXC9sb2dpbiIsImlhdCI6MTY0MDgxMTcyOSwibmJmIjoxNjQwODExNzI5LCJqdGkiOiI0SGVUU2ZWdk5PUGk2S0RqIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5YfXO3-qxBH8vkzslD0WMMUsZzSvWm5jZlVH45mxN80",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/auth/get-my-info",
+							"raw": "https://wework-backend.yaforms.com/api/auth/get-my-info",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"wework-backend",
+								"yaforms",
+								"com"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"auth",
@@ -160,7 +166,7 @@
 						"header": [
 							{
 								"key": "authToken",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQwODAxMzgxLCJleHAiOjE2NDA4MDQ5ODEsIm5iZiI6MTY0MDgwMTM4MSwianRpIjoibGVSZkY3cnZJY2doUmpRayIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.mNFgELCTjt6DF2WrPOGAEnPVbusjfVMDhBRkL19_LMg",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd2V3b3JrLWJhY2tlbmQueWFmb3Jtcy5jb21cL2FwaVwvdW5hdXRoXC9sb2dpbiIsImlhdCI6MTY0MDgxMTcyOSwibmJmIjoxNjQwODExNzI5LCJqdGkiOiI0SGVUU2ZWdk5PUGk2S0RqIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5YfXO3-qxBH8vkzslD0WMMUsZzSvWm5jZlVH45mxN80",
 								"type": "text"
 							}
 						],
@@ -230,11 +236,13 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/update-my-info",
+							"raw": "https://wework-backend.yaforms.com/api/auth/update-my-info",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"wework-backend",
+								"yaforms",
+								"com"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"auth",
@@ -259,11 +267,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/unauth/forget-password",
+							"raw": "https://wework-backend.yaforms.com/api/unauth/forget-password",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"wework-backend",
+								"yaforms",
+								"com"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
@@ -288,15 +298,48 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/unauth/get-reset-password-code",
+							"raw": "https://wework-backend.yaforms.com/api/unauth/get-reset-password-code",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"wework-backend",
+								"yaforms",
+								"com"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
 								"get-reset-password-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 1,\r\n    \"password\": \"eslam\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://wework-backend.yaforms.com/api/unauth/update-password",
+							"protocol": "https",
+							"host": [
+								"wework-backend",
+								"yaforms",
+								"com"
+							],
+							"path": [
+								"api",
+								"unauth",
+								"update-password"
 							]
 						}
 					},

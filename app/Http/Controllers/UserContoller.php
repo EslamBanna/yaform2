@@ -157,7 +157,7 @@ class UserContoller extends Controller
                 'reset_password_code' => $code
             ]);
             // send mail
-            $reset_link = "facebook.com";
+            $reset_link = "http://localhost:8080/resrt-password/" . $user->id;
             Mail::to($request->email)->send(new VerficationMail($code, $user->name, $user->email, $reset_link));
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
@@ -176,6 +176,25 @@ class UserContoller extends Controller
                 return $this->returnError('202', 'user not founded');
             }
             return $this->returnData('data', $user->reset_password_code);
+        } catch (\Exception $e) {
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        try {
+            if (!$request->has('user_id') || !$request->has('password')) {
+                return $this->returnError('202', 'you must enter user id and new password');
+            }
+            $user = User::find($request->user_id);
+            if (!$user) {
+                return $this->returnError('202', 'user not founded');
+            }
+            $user->update([
+                'password' => bcrypt($request->password)
+            ]);
+            return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
             return $this->returnError('201', $e->getMessage());
         }
