@@ -19,8 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
 Route::group(['prefix' => 'unauth'], function () {
     Route::post('/sign-up', [UserContoller::class, 'signUp']);
     Route::post('/login', [UserContoller::class, 'login']);
@@ -28,8 +26,9 @@ Route::group(['prefix' => 'unauth'], function () {
 });
 
 
-
-Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api'], function () {
-    Route::get('/test', [UserContoller::class, 'test']);
+Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], function () {
+    Route::get('/get-my-info', [UserContoller::class, 'me']);
     Route::post('/logout', [UserContoller::class, 'logout']);
+    Route::post('/update-my-info', [UserContoller::class, 'updateMyInfo']);
+
 });

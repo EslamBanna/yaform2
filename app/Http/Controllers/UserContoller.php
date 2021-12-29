@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -64,7 +65,9 @@ class UserContoller extends Controller
                 return $this->returnValidationError($code, $validator);
             }
             $cardintions = $request->only(['email', 'password']);
+            //    return $cardintions;
             $token = Auth::guard('api-user')->attempt($cardintions);
+            // return $token;
             if (!$token) {
                 return $this->returnError('E001', 'fail');
             }
@@ -72,7 +75,7 @@ class UserContoller extends Controller
             $user->token = $token;
             return $this->returnSuccessMessage($user);
         } catch (\Exception $e) {
-            return $this->returnError('201', 'fail');
+            return $this->returnError('201', $e->getMessage());
         }
     }
     public function me()
@@ -91,7 +94,44 @@ class UserContoller extends Controller
                 return $this->returnError('E205', 'fail');
             }
         } catch (\Exception $e) {
-            return $this->returnError('E205', 'fail');
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function updateMyInfo(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::find(Auth()->user()->id);
+            if (!$user) {
+                return $this->returnError('202', 'user not found');
+            }
+            // $img_src = null;
+            $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/users/');
+            $img_src = substr($user->img_src, $photo_len);
+            if ($request->hasFile('img_src')) {
+                unlink('images/users/' . $img_src);
+                $img_src = $this->saveImage($request->img_src, 'users');
+            }
+            $user->update([
+                'name' => $request->name ?? $user->name,
+                'email' => $request->email ?? $user->email,
+                'phone' => $request->phone ?? $user->phone,
+                'password' => bcrypt($request->password) ?? $user->password,
+                'num_of_employees' => $request->num_of_employees ?? $user->num_of_employees,
+                'img_src' => $img_src ?? '',
+                'url' => $request->url ?? $user->url,
+                'country' => $request->country ?? $user->country,
+                'business_category' => $request->business_category ?? $user->business_category,
+                'year_dob' => $request->year_dob ?? $user->year_dob,
+                'month_dob' => $request->month_dob ?? $user->month_dob,
+                'day_dob' => $request->day_dob ?? $user->day_dob
+            ]);
+            DB::commit();
+            return $this->returnSuccessMessage('success');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $this->returnError('201', $e->getMessage());
         }
     }
 }
