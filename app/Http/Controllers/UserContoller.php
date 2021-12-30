@@ -24,6 +24,7 @@ class UserContoller extends Controller
                 'phone' => 'required|unique:users,phone',
                 'password' => 'required',
                 'name' => 'required',
+                'type' => 'required|in:individual,business,admin'
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
@@ -46,11 +47,12 @@ class UserContoller extends Controller
                 'business_category' => $request->business_category,
                 'year_dob' => $request->year_dob,
                 'month_dob' => $request->month_dob,
-                'day_dob' => $request->day_dob
+                'day_dob' => $request->day_dob,
+                'type' => $request->type
             ]);
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
-            return $this->returnError('201', 'fail');
+            return $this->returnError('201', $e->getMessage());
         }
     }
 

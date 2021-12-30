@@ -1,0 +1,5 @@
+
+####################
+dbname = yafoutcm_yaform
+user = yafoutcm_yaform
+pass = oKIYA}[*)TMs
