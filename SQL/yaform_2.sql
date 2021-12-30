@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2021 at 09:51 PM
+-- Generation Time: Dec 30, 2021 at 04:05 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.5
 
@@ -54,10 +54,10 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(13, '2014_10_12_000000_create_users_table', 1),
-(14, '2014_10_12_100000_create_password_resets_table', 1),
-(15, '2019_08_19_000000_create_failed_jobs_table', 1),
-(16, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(17, '2014_10_12_000000_create_users_table', 1),
+(18, '2014_10_12_100000_create_password_resets_table', 1),
+(19, '2019_08_19_000000_create_failed_jobs_table', 1),
+(20, '2019_12_14_000001_create_personal_access_tokens_table', 1);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 => indvidual, 1 => business',
+  `type` enum('individual','business','admin') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'individual',
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `type`, `name`, `phone`, `email`, `num_of_employees`, `img_src`, `url`, `country`, `business_category`, `year_dob`, `month_dob`, `day_dob`, `email_verified_at`, `password`, `reset_password_code`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 0, 'eslam elbanna', '0123456789', 'solombana2000@gmail.com', 5, '', 'https://web.facebook.com/', 'tanta', 'programming', '2000', '01', '25', NULL, '$2y$10$sg8VI.vbhz7IDwEl7sizNew2uJ9fXhyH3.vJQVZ3asgPOCxt6w8XG', '172665', NULL, '2021-12-29 17:36:29', '2021-12-29 18:11:15');
+(2, 'individual', 'eslam elbanna', '0123456789', 'solombana2000@gmail.com', 5, 'ForsxkAWYbxnUal4OqvnKLDeZlMiaU8HfswuXbMR.jpg', 'https://web.facebook.com/', 'tanta', 'programming', '2000', '01', '25', NULL, '$2y$10$bF.oIGhqrQNOK49mC7CgMuqM/biWEMKB2ddjIkT3V5YLkAvTWbj6a', NULL, NULL, '2021-12-30 13:05:27', '2021-12-30 13:05:27');
 
 --
 -- Indexes for dumped tables
@@ -177,7 +177,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -189,7 +189,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

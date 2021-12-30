@@ -76,8 +76,13 @@ class UserContoller extends Controller
                 return $this->returnError('E001', 'fail');
             }
             $user = Auth::guard('api-user')->user();
-            $user->token = $token;
-            return $this->returnSuccessMessage($user);
+            // $user->token = $token;
+            $data['id'] = $user->id;
+            $data['name'] = $user->name;
+            $data['img_src'] = $user->img_src;
+            $data['type'] = $user->type;
+            $data['token'] = $token;
+            return $this->returnSuccessMessage($data);
         } catch (\Exception $e) {
             return $this->returnError('201', $e->getMessage());
         }
