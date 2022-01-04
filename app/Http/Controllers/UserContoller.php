@@ -164,7 +164,7 @@ class UserContoller extends Controller
                 'reset_password_code' => $code
             ]);
             // send mail
-            $reset_link = "http://localhost:8080/resrt-password/" . $user->id;
+            $reset_link = "http://localhost:8080/reset-password/" . $user->id;
             Mail::to($request->email)->send(new VerficationMail($code, $user->name, $user->email, $reset_link));
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {

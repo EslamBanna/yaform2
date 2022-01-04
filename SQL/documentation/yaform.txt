@@ -4,3 +4,5 @@ yaformv2@gmail.com
 dbname = yafoutcm_yaform
 user = yafoutcm_yaform
 pass = oKIYA}[*)TMs
+##################
+https://ap.www.namecheap.com/
