@@ -23,13 +23,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://wework-backend.yaforms.com/api/unauth/login",
-							"protocol": "https",
+							"raw": "localhost:8000/api/unauth/login",
 							"host": [
-								"wework-backend",
-								"yaforms",
-								"com"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
@@ -115,13 +113,11 @@
 							]
 						},
 						"url": {
-							"raw": "https://wework-backend.yaforms.com/api/unauth/sign-up",
-							"protocol": "https",
+							"raw": "localhost:8000/api/unauth/sign-up",
 							"host": [
-								"wework-backend",
-								"yaforms",
-								"com"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
@@ -138,18 +134,16 @@
 						"header": [
 							{
 								"key": "authToken",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd2V3b3JrLWJhY2tlbmQueWFmb3Jtcy5jb21cL2FwaVwvdW5hdXRoXC9sb2dpbiIsImlhdCI6MTY0MDg3NzI4NiwibmJmIjoxNjQwODc3Mjg2LCJqdGkiOiJFdDRTOUtmWWhFMllVVDFUIiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.skyaU6V2XOpOMDivjWihhEHbvZbuJxsAOqu0MtKKTI8",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://wework-backend.yaforms.com/api/auth/get-my-info",
-							"protocol": "https",
+							"raw": "localhost:8000/api/auth/get-my-info",
 							"host": [
-								"wework-backend",
-								"yaforms",
-								"com"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"auth",
@@ -340,6 +334,556 @@
 								"api",
 								"unauth",
 								"update-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "form",
+			"item": [
+				{
+					"name": "create form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "form_type",
+									"value": "classic form",
+									"type": "default"
+								},
+								{
+									"key": "image_header",
+									"type": "file",
+									"src": "/E:/WhatsApp Image 2021-09-25 at 1.33.08 AM.jpeg"
+								},
+								{
+									"key": "header",
+									"value": "test template 1",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "test template 1",
+									"type": "default"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/E:/Capture.PNG"
+								},
+								{
+									"key": "style_theme",
+									"value": "defalut",
+									"type": "default"
+								},
+								{
+									"key": "font_family",
+									"value": "defalut-font",
+									"type": "default"
+								},
+								{
+									"key": "msg",
+									"value": "success submit",
+									"type": "default"
+								},
+								{
+									"key": "social_media[0][type]",
+									"value": "Facebook",
+									"type": "default"
+								},
+								{
+									"key": "social_media[0][url]",
+									"value": "facebook.com",
+									"type": "default"
+								},
+								{
+									"key": "social_media[1][type]",
+									"value": "Twitter",
+									"type": "default"
+								},
+								{
+									"key": "social_media[1][url]",
+									"value": "twitter.com",
+									"type": "default"
+								},
+								{
+									"key": "social_media[2][type]",
+									"value": "Instgram",
+									"type": "default"
+								},
+								{
+									"key": "social_media[2][url]",
+									"value": "instgram.com",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][type]",
+									"value": "question",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][description]",
+									"value": "Q1",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][question_type]",
+									"value": "Paragraph",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][required]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][focus]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][display_video]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][0][value]",
+									"value": "10",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][0][text]",
+									"value": "option 1",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][1][value]",
+									"value": "20",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][1][text]",
+									"value": "option 2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/create-form",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"create-form"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get form",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/get-form/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get-form",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get forms",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/auth/get-forms",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"get-forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete form",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/auth/delete-form/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"delete-form",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "templates",
+			"item": [
+				{
+					"name": "get template",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/auth/get-template/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"get-template",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get templates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/auth/get-templates",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"get-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "form_type",
+									"value": "classic form",
+									"type": "default"
+								},
+								{
+									"key": "image_header",
+									"type": "file",
+									"src": "/E:/WhatsApp Image 2021-09-25 at 1.33.08 AM.jpeg"
+								},
+								{
+									"key": "header",
+									"value": "test template 1",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "test template 1",
+									"type": "default"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/E:/Capture.PNG"
+								},
+								{
+									"key": "style_theme",
+									"value": "defalut",
+									"type": "default"
+								},
+								{
+									"key": "font_family",
+									"value": "defalut-font",
+									"type": "default"
+								},
+								{
+									"key": "msg",
+									"value": "success submit",
+									"type": "default"
+								},
+								{
+									"key": "social_media[0][type]",
+									"value": "Facebook",
+									"type": "default"
+								},
+								{
+									"key": "social_media[0][url]",
+									"value": "facebook.com",
+									"type": "default"
+								},
+								{
+									"key": "social_media[1][type]",
+									"value": "Twitter",
+									"type": "default"
+								},
+								{
+									"key": "social_media[1][url]",
+									"value": "twitter.com",
+									"type": "default"
+								},
+								{
+									"key": "social_media[2][type]",
+									"value": "Instgram",
+									"type": "default"
+								},
+								{
+									"key": "social_media[2][url]",
+									"value": "instgram.com",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][type]",
+									"value": "question",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][description]",
+									"value": "Q1",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][question_type]",
+									"value": "Paragraph",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][required]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][focus]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][display_video]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][0][value]",
+									"value": "10",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][0][text]",
+									"value": "option 1",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][1][value]",
+									"value": "20",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][1][text]",
+									"value": "option 2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/create-template",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"create-template"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "common",
+			"item": [
+				{
+					"name": "accept response",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accept_response\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/accept-response/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"accept-response",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "form setting",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"msg\": \"success\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/form-setting/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"form-setting",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eslamelbanna02@gmail.com\",\r\n    \"message\": \"hello\",\r\n    \"subject\": \"this is yaform link\",\r\n    \"link\": \"facebook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/send-form",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"send-form"
 							]
 						}
 					},
