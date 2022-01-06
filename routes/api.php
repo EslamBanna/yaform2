@@ -39,10 +39,13 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::get('/get-templates',[FormContoller::class,'getTemplates']);
     Route::get('/get-template/{templateId}',[FormContoller::class,'getTemplate']);
 
+    Route::post('/create-form',[FormContoller::class,'createForm']);
+    Route::get('/get-forms',[FormContoller::class,'getForms']);
+    Route::post('/send-form',[FormContoller::class,'sendForm']);
+    Route::delete('/delete-form/{formId}', [FormContoller::class,'deleteForm']);
 
-    Route::Post('/accept-response/{formId}',[FormContoller::class,'acceptResponse']);
-    Route::Post('/form-setting/{formId}',[FormContoller::class,'formSetting']);
+    Route::put('/accept-response/{formId}',[FormContoller::class,'acceptResponse']);
+    Route::put('/form-setting/{formId}',[FormContoller::class,'formSetting']);
 });
 
-Route::get('/test',[Controller::class,'test']);
-Route::post('/test',[Controller::class,'testT']);
+Route::get('/get-form/{formId}',[FormContoller::class,'getForm']);

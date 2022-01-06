@@ -80,4 +80,13 @@ class Form extends Model
     {
         return $value ?? "";
     }
+    ####### relations ###########
+    public function Questions()
+    {
+        return $this->hasMany(Question::class, 'form_id', 'id');
+    }
+    public function socialMedia()
+    {
+        return $this->hasMany(SocialMediaLink::class, 'form_id', 'id');
+    }
 }

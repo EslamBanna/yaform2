@@ -115,4 +115,9 @@ class Question extends Model
             return "";
         }
     }
+
+    public function options()
+    {
+        return $this->hasMany(Option::class, 'question_id', 'id');
+    }
 }

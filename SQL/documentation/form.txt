@@ -52,15 +52,14 @@ question: {
 CreateTemplate  x
 GetTemplates   x
 GetTamplate/id  x
+CreateForm  x
+Get/formId  (not token)  x
+Get/forms (token) --> (logo - header - formType - description - last update)  x
+sendForm  -- {"meessage": '', "subject": '', "email": '', "link": ''}   x
+acceptResponse/id { acceptResponse: true/false } x
+formSetting/id { msg: '' } x
 
-CreateForm
 CreateQuiz
 Update/Form/id || Quiz
 Delete/Form/id || Quiz
-Get/formId  (not token)
-Get/forms (token) --> (logo - header - formType - description - last update)
-sendForm  -- {"meessage": '', "subject": '', "email": '', "link": ''}
-
-acceptResponse/id { acceptResponse: true/false }
-formSetting/id { msg: '' }
 
