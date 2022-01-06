@@ -14,4 +14,8 @@ class RightSolution extends Model
         'question_id',
         'solution'
     ];
+    public function getSolutionAttribute($value)
+    {
+        return $value ?? "";
+    }
 }

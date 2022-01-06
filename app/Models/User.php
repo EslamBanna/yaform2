@@ -73,4 +73,50 @@ class User extends Authenticatable implements JWTSubject
         $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
         return ($value == null ? '' : $actual_link . 'images/users/' . $value);
     }
+
+    public function getNameAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getEmailAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getPhoneAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getNumOfEmployeesAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getUrlAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getResetPasswordCodeAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getCountryAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getBusinessCategoryAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getYearDobAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getMonthDobAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getDayDobAttribute($value)
+    {
+        return $value ?? "";
+    }
+    
 }

@@ -13,4 +13,9 @@ class Answer extends Model
         'submit_id',
         'answer'
     ];
+
+    public function getAnswerAttribute($value)
+    {
+        return $value ?? "";
+    }
 }

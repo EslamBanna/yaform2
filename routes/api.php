@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,6 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::post('/update-my-info', [UserContoller::class, 'updateMyInfo']);
 
 });
+
+Route::get('/test',[Controller::class,'test']);
+Route::post('/test',[Controller::class,'testT']);

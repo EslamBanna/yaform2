@@ -14,4 +14,12 @@ class Option extends Model
         'value',
         'text'
     ];
+    public function getValueAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getTextAttribute($value)
+    {
+        return $value ?? "";
+    }
 }
