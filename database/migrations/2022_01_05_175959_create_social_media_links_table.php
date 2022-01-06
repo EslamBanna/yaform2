@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateSocialMediaLinksTable extends Migration
 {
@@ -16,9 +17,11 @@ class CreateSocialMediaLinksTable extends Migration
         Schema::create('social_media_links', function (Blueprint $table) {
             $table->id();
             $table->integer('form_id');
-            $table->enum('type',['0','1','2'])->comment('0 => facebook, 1 => twitter, 2=> instgram');
+            $table->enum('type',['0','1','2'])->comment('0 => Facebook, 1 => Twitter, 2=> Instgram');
             $table->string('url')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

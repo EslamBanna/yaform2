@@ -28,39 +28,39 @@ class Question extends Model
     public function setTypeAttribute($value)
     {
         if ($value == 'question') {
-            $this->attributes['form_type'] = '0';
+            $this->attributes['type'] = '0';
         } elseif ($value == 'title') {
-            $this->attributes['form_type'] = '1';
+            $this->attributes['type'] = '1';
         } elseif ($value == 'image') {
-            $this->attributes['form_type'] = '2';
+            $this->attributes['type'] = '2';
         } elseif ($value == 'video') {
-            $this->attributes['form_type'] = '3';
+            $this->attributes['type'] = '3';
         }
     }
     public function setQuestionTypeAttribute($value)
     {
         if ($value == 'Short answer') {
-            $this->attributes['form_type'] = '0';
+            $this->attributes['question_type'] = '0';
         } elseif ($value == 'Paragraph') {
-            $this->attributes['form_type'] = '1';
+            $this->attributes['question_type'] = '1';
         } elseif ($value == 'Multiple choice') {
-            $this->attributes['form_type'] = '2';
+            $this->attributes['question_type'] = '2';
         } elseif ($value == 'Checkboxes') {
-            $this->attributes['form_type'] = '3';
+            $this->attributes['question_type'] = '3';
         } elseif ($value == 'Dropdown') {
-            $this->attributes['form_type'] = '4';
+            $this->attributes['question_type'] = '4';
         } elseif ($value == 'Date') {
-            $this->attributes['form_type'] = '5';
+            $this->attributes['question_type'] = '5';
         } elseif ($value == 'Time') {
-            $this->attributes['form_type'] = '6';
+            $this->attributes['question_type'] = '6';
         } elseif ($value == 'Phone number') {
-            $this->attributes['form_type'] = '7';
+            $this->attributes['question_type'] = '7';
         } elseif ($value == 'Email') {
-            $this->attributes['form_type'] = '8';
+            $this->attributes['question_type'] = '8';
         } elseif ($value == 'Name') {
-            $this->attributes['form_type'] = '9';
+            $this->attributes['question_type'] = '9';
         } elseif ($value == 'Number') {
-            $this->attributes['form_type'] = '10';
+            $this->attributes['question_type'] = '10';
         }
     }
     public function getTypeAttribute($value)

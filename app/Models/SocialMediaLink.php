@@ -18,11 +18,11 @@ class SocialMediaLink extends Model
     public function setTypeAttribute($value)
     {
         if ($value == 'Facebook') {
-            $this->attributes['form_type'] = '0';
-        } elseif ($value == 'twitter') {
-            $this->attributes['form_type'] = '1';
-        } elseif ($value == 'instgram') {
-            $this->attributes['form_type'] = '2';
+            $this->attributes['type'] = '0';
+        } elseif ($value == 'Twitter') {
+            $this->attributes['type'] = '1';
+        } elseif ($value == 'Instgram') {
+            $this->attributes['type'] = '2';
         }
     }
 
@@ -31,9 +31,9 @@ class SocialMediaLink extends Model
         if ($value == '0') {
             return 'Facebook';
         } elseif ($value == '1') {
-            return 'twitter';
+            return 'Twitter';
         } elseif ($value == '2') {
-            return 'instgram';
+            return 'Instgram';
         } else {
             return "";
         }

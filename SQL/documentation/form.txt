@@ -49,9 +49,9 @@ question: {
     ],
 }
 
-CreateTemplate
-GetTemplates
-GetTamplate/id
+CreateTemplate  x
+GetTemplates   x
+GetTamplate/id  x
 
 CreateForm
 CreateQuiz

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateFormsTable extends Migration
 {
@@ -25,9 +26,11 @@ class CreateFormsTable extends Migration
             $table->string('logo')->nullable();
             $table->string('style_theme')->nullable();
             $table->string('font_family')->nullable();
-            $table->boolean('accept_response')->default(0)->comment('0 no 1 yes');
+            $table->boolean('accept_response')->default(1)->comment('0 no 1 yes');
             $table->string('msg')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

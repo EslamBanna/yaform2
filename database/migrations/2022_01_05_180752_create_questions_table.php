@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateQuestionsTable extends Migration
 {
@@ -22,8 +23,9 @@ class CreateQuestionsTable extends Migration
             $table->boolean('required')->default(0)->comment('0 not required, 1 is required');
             $table->boolean('focus')->default(0)->comment('0 not focused, 1 is focused');
             $table->boolean('display_video')->default(0)->comment('0 not display, 1 display');
-
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

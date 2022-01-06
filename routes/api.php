@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FormContoller;
 use App\Http\Controllers\UserContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +35,13 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::get('/get-my-info', [UserContoller::class, 'me']);
     Route::post('/logout', [UserContoller::class, 'logout']);
     Route::post('/update-my-info', [UserContoller::class, 'updateMyInfo']);
+    Route::post('/create-template',[FormContoller::class,'createTemplate']);
+    Route::get('/get-templates',[FormContoller::class,'getTemplates']);
+    Route::get('/get-template/{templateId}',[FormContoller::class,'getTemplate']);
 
+
+    Route::Post('/accept-response/{formId}',[FormContoller::class,'acceptResponse']);
+    Route::Post('/form-setting/{formId}',[FormContoller::class,'formSetting']);
 });
 
 Route::get('/test',[Controller::class,'test']);
