@@ -1,0 +1,26 @@
+{
+    "form_id": 1,
+    "answers": [
+        {
+            "question_id": 1,
+            "answer": "ans1"
+        },
+        {
+            "question_id": 1,
+            "answer": [
+                "ans2",
+                "ans3",
+                "ans4",
+                "ans5"
+            ]
+        },
+        {
+            "question_id": 1,
+            "answer": "ans6"
+        },
+        {
+            "question_id": 1,
+            "answer": "ans7"
+        }
+    ]
+}

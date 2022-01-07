@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerContoller;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FormContoller;
 use App\Http\Controllers\UserContoller;
@@ -43,9 +44,16 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::get('/get-forms',[FormContoller::class,'getForms']);
     Route::post('/send-form',[FormContoller::class,'sendForm']);
     Route::delete('/delete-form/{formId}', [FormContoller::class,'deleteForm']);
+    Route::put('/update-form/{formId}', [FormContoller::class,'updateForm']);
+
+    Route::post('/create-quiz',[FormContoller::class,'createQuiz']);
+    Route::delete('/delete-quiz/{quizId}', [FormContoller::class,'deleteQuiz']);
+
 
     Route::put('/accept-response/{formId}',[FormContoller::class,'acceptResponse']);
     Route::put('/form-setting/{formId}',[FormContoller::class,'formSetting']);
 });
 
 Route::get('/get-form/{formId}',[FormContoller::class,'getForm']);
+Route::post('/submit-answer',[AnswerContoller::class,'submitAnswer']);
+    

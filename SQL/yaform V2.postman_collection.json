@@ -574,59 +574,6 @@
 			"name": "templates",
 			"item": [
 				{
-					"name": "get template",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "authToken",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "localhost:8000/api/auth/get-template/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"auth",
-								"get-template",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get templates",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "authToken",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "localhost:8000/api/auth/get-templates",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"auth",
-								"get-templates"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "create template",
 					"request": {
 						"method": "POST",
@@ -776,6 +723,59 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get template",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/auth/get-template/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"get-template",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get templates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/auth/get-templates",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"get-templates"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -884,6 +884,237 @@
 								"api",
 								"auth",
 								"send-form"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "quiz",
+			"item": [
+				{
+					"name": "create quiz",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "form_type",
+									"value": "classic form",
+									"type": "default"
+								},
+								{
+									"key": "image_header",
+									"type": "file",
+									"src": "/E:/WhatsApp Image 2021-09-25 at 1.33.08 AM.jpeg"
+								},
+								{
+									"key": "header",
+									"value": "test template 1",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "test template 1",
+									"type": "default"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/E:/Capture.PNG"
+								},
+								{
+									"key": "style_theme",
+									"value": "defalut",
+									"type": "default"
+								},
+								{
+									"key": "font_family",
+									"value": "defalut-font",
+									"type": "default"
+								},
+								{
+									"key": "msg",
+									"value": "success submit",
+									"type": "default"
+								},
+								{
+									"key": "social_media[0][type]",
+									"value": "Facebook",
+									"type": "default"
+								},
+								{
+									"key": "social_media[0][url]",
+									"value": "facebook.com",
+									"type": "default"
+								},
+								{
+									"key": "social_media[1][type]",
+									"value": "Twitter",
+									"type": "default"
+								},
+								{
+									"key": "social_media[1][url]",
+									"value": "twitter.com",
+									"type": "default"
+								},
+								{
+									"key": "social_media[2][type]",
+									"value": "Instgram",
+									"type": "default"
+								},
+								{
+									"key": "social_media[2][url]",
+									"value": "instgram.com",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][type]",
+									"value": "question",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][description]",
+									"value": "Q1",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][question_type]",
+									"value": "Paragraph",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][required]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][focus]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][display_video]",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][0][value]",
+									"value": "10",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][0][text]",
+									"value": "option 1",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][1][value]",
+									"value": "20",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][options][1][text]",
+									"value": "option 2",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][default_answer][0]",
+									"value": "cairo",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][default_answer][1]",
+									"value": "tanta",
+									"type": "default"
+								},
+								{
+									"key": "questions[0][default_answer][2]",
+									"value": "alex",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/create-quiz",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"create-quiz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete quiz",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/auth/delete-quiz/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"delete-quiz",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "answer",
+			"item": [
+				{
+					"name": "submit answer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"form_id\": 1,\r\n    \"answers\": [\r\n        {\r\n            \"question_id\": 1,\r\n            \"answer\": \"ans1\"\r\n        },\r\n        {\r\n            \"question_id\": 2,\r\n            \"answer\": [\r\n                \"ans2\",\r\n                \"ans3\",\r\n                \"ans4\",\r\n                \"ans5\"\r\n            ]\r\n        },\r\n        {\r\n            \"question_id\": 3,\r\n            \"answer\": \"ans6\"\r\n        },\r\n        {\r\n            \"question_id\": 4,\r\n            \"answer\": \"ans7\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/submit-answer",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"submit-answer"
 							]
 						}
 					},

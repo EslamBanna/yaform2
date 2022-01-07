@@ -11,6 +11,7 @@ class Answer extends Model
     protected $table = 'answers';
     protected $fillable = [
         'submit_id',
+        'question_id',
         'answer'
     ];
 

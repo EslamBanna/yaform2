@@ -120,4 +120,9 @@ class Question extends Model
     {
         return $this->hasMany(Option::class, 'question_id', 'id');
     }
+
+    public function rightSolutions()
+    {
+        return $this->hasMany(RightSolution::class, 'question_id', 'id');
+    }
 }

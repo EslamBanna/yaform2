@@ -58,8 +58,8 @@ Get/forms (token) --> (logo - header - formType - description - last update)  x
 sendForm  -- {"meessage": '', "subject": '', "email": '', "link": ''}   x
 acceptResponse/id { acceptResponse: true/false } x
 formSetting/id { msg: '' } x
+CreateQuiz  x
+Delete/Form/id || Quiz  x
 
-CreateQuiz
+
 Update/Form/id || Quiz
-Delete/Form/id || Quiz
-

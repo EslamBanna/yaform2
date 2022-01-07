@@ -16,7 +16,7 @@ class CreateSubmitsTable extends Migration
     {
         Schema::create('submits', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            // $table->integer('user_id');
             $table->integer('form_id');
             // $table->timestamps();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
