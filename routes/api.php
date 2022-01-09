@@ -43,12 +43,12 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::post('/create-form',[FormContoller::class,'createForm']);
     Route::get('/get-forms',[FormContoller::class,'getForms']);
     Route::post('/send-form',[FormContoller::class,'sendForm']);
-    Route::delete('/delete-form/{formId}', [FormContoller::class,'deleteForm']);
+    Route::delete('/delete-form/{formId}', [FormContoller::class,'deleteFormOrQuiz']);
     Route::put('/update-form/{formId}', [FormContoller::class,'updateForm']);
 
     Route::post('/create-quiz',[FormContoller::class,'createQuiz']);
-    Route::delete('/delete-quiz/{quizId}', [FormContoller::class,'deleteQuiz']);
-
+    Route::delete('/delete-quiz/{quizId}', [FormContoller::class,'deleteFormOrQuiz']);
+    Route::put('/update-quiz/{quizId}', [FormContoller::class,'updateQuiz']);
 
     Route::put('/accept-response/{formId}',[FormContoller::class,'acceptResponse']);
     Route::put('/form-setting/{formId}',[FormContoller::class,'formSetting']);

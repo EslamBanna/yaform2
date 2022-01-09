@@ -21,7 +21,9 @@ class Form extends Model
         'style_theme',
         'font_family',
         'accept_response',
-        'msg'
+        'msg',
+        'deleted',
+        'updated'
     ];
 
     protected $casts = [

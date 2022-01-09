@@ -28,6 +28,9 @@ class CreateFormsTable extends Migration
             $table->string('font_family')->nullable();
             $table->boolean('accept_response')->default(1)->comment('0 no 1 yes');
             $table->string('msg')->nullable();
+            $table->boolean('deleted')->default(0)->comment('0 is available, 1 => is deleted');
+            $table->boolean('updated')->default(0)->comment('0 is available, 1 => is updated');
+            
             // $table->timestamps();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
