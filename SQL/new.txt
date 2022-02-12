@@ -1,0 +1,3 @@
+dbname = souqelj1_yaform_new
+user = souqelj1_yaform_new
+pass = @Asdfghjkl123
