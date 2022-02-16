@@ -246,6 +246,19 @@ class FormContoller extends Controller
                 'font_family' => $request->font_family,
                 'msg' => $request->msg
             ]);
+
+            return $this->returnData('data', $template_id);
+            DB::commit();
+            return $this->returnSuccessMessage('inserted successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function appendForm(Request $request, $template_id)
+    {
+        try {
             if ($request->has('social_media')) {
                 foreach ($request->social_media as $link) {
                     SocialMediaLink::create([
@@ -314,13 +327,12 @@ class FormContoller extends Controller
                     }
                 }
             }
-            DB::commit();
-            return $this->returnSuccessMessage('inserted successfully');
+            return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
-            DB::rollback();
-            return $this->returnError('201', $e->getMessage());
+            return  $this->returnError(201, $e->getMessage());
         }
     }
+
     public function getForm($formId)
     {
         try {

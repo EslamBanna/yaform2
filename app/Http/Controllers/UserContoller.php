@@ -21,7 +21,7 @@ class UserContoller extends Controller
         try {
             $rules = [
                 'email' => 'required|email|unique:users,email',
-                'phone' => 'required|unique:users,phone',
+                'phone' => 'required',
                 'password' => 'required',
                 'name' => 'required',
                 'type' => 'required|in:individual,business,admin'
@@ -119,7 +119,9 @@ class UserContoller extends Controller
             $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/users/');
             $img_src = substr($user->img_src, $photo_len);
             if ($request->hasFile('img_src')) {
-                unlink('images/users/' . $img_src);
+                if ($user->img_src) {
+                    unlink('images/users/' . $img_src);
+                }
                 $img_src = $this->saveImage($request->img_src, 'users');
             }
             $user->update([

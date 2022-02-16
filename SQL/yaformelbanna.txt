@@ -1,0 +1,7 @@
+db = souqelj1_yaformelbanna
+user = souqelj1_yaformelbanna
+pass = @Asdfghjkl123
+
+
+when i make a new sub domain( https://yaformelbanna.we-work.pro ) to deploy my back-end project (laravel) and after i finished all required configuration to the project like creating new database and creatng new user and set the user to database...and so on
+and now i i'am trying to access this project i got the next message "Warning: Potential Security Risk Ahead" from firefox and the next message from chrome "This site can’t be reached yaformelbanna.we-work.pro took too long to respond."

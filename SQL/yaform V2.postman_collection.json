@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"solombana2000@gmail.com\",\r\n    \"password\": \"eslam\"\r\n}",
+							"raw": "{\r\n    \"email\": \"solombana20008@gmail.com\",\r\n    \"password\": \"eslam\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,11 +23,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/unauth/login",
+							"raw": "https://yaformelbanna.we-work.pro/api/unauth/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"yaformelbanna",
+								"we-work",
+								"pro"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
@@ -47,7 +49,7 @@
 							"formdata": [
 								{
 									"key": "type",
-									"value": "individual",
+									"value": "admin",
 									"type": "text"
 								},
 								{
@@ -57,12 +59,12 @@
 								},
 								{
 									"key": "email",
-									"value": "solombana2000@gmail.com",
+									"value": "solombana20008@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "phone",
-									"value": "0123456789",
+									"value": "012345678938",
 									"type": "text"
 								},
 								{
@@ -113,11 +115,13 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/unauth/sign-up",
+							"raw": "https://yaformelbanna.we-work.pro/api/unauth/sign-up",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"yaformelbanna",
+								"we-work",
+								"pro"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
@@ -139,11 +143,15 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/auth/get-my-info",
+							"raw": "https://yaform.new.wework.souqeljuma.com/api/auth/get-my-info",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"yaform",
+								"new",
+								"wework",
+								"souqeljuma",
+								"com"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"auth",
@@ -397,86 +405,6 @@
 									"key": "msg",
 									"value": "success submit",
 									"type": "default"
-								},
-								{
-									"key": "social_media[0][type]",
-									"value": "Facebook",
-									"type": "default"
-								},
-								{
-									"key": "social_media[0][url]",
-									"value": "facebook.com",
-									"type": "default"
-								},
-								{
-									"key": "social_media[1][type]",
-									"value": "Twitter",
-									"type": "default"
-								},
-								{
-									"key": "social_media[1][url]",
-									"value": "twitter.com",
-									"type": "default"
-								},
-								{
-									"key": "social_media[2][type]",
-									"value": "Instgram",
-									"type": "default"
-								},
-								{
-									"key": "social_media[2][url]",
-									"value": "instgram.com",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][type]",
-									"value": "question",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][description]",
-									"value": "Q1",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][question_type]",
-									"value": "Paragraph",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][required]",
-									"value": "true",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][focus]",
-									"value": "true",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][display_video]",
-									"value": "true",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][options][0][value]",
-									"value": "10",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][options][0][text]",
-									"value": "option 1",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][options][1][value]",
-									"value": "20",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][options][1][text]",
-									"value": "option 2",
-									"type": "default"
 								}
 							]
 						},
@@ -490,6 +418,44 @@
 								"api",
 								"auth",
 								"create-form"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "append form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"type\": \"question\",\r\n            \"description\": \"Q1\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": \"true\",\r\n            \"focus\": \"true\",\r\n            \"display_video\": \"true\",\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10\",\r\n                    \"text\": \"option 1\"\r\n                },\r\n                {\r\n                    \"value\": \"20\",\r\n                    \"text\": \"option 2\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://yaformelbanna.we-work.pro/api/auth/append-form/5",
+							"protocol": "https",
+							"host": [
+								"yaformelbanna",
+								"we-work",
+								"pro"
+							],
+							"path": [
+								"api",
+								"auth",
+								"append-form",
+								"5"
 							]
 						}
 					},
@@ -702,12 +668,7 @@
 									"value": "option 2",
 									"type": "default"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "localhost:8000/api/auth/update-form/2",
