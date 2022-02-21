@@ -22,8 +22,8 @@ class Form extends Model
         'font_family',
         'accept_response',
         'msg',
-        'deleted',
-        'updated'
+        // 'deleted',
+        // 'updated'
     ];
 
     protected $casts = [
@@ -90,5 +90,31 @@ class Form extends Model
     public function socialMedia()
     {
         return $this->hasMany(SocialMediaLink::class, 'form_id', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function submits()
+    {
+        return $this->hasMany(Submit::class, 'form_id', 'id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($form) {
+            $form->socialMedia()->each(function ($socialMedia) {
+                $socialMedia->delete();
+            });
+
+            $form->Questions()->each(function ($questions) {
+                $questions->delete();
+            });
+
+            $form->submits()->each(function ($submits) {
+                $submits->delete();
+            });
+        });
     }
 }

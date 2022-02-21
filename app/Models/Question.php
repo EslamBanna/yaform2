@@ -125,4 +125,18 @@ class Question extends Model
     {
         return $this->hasMany(RightSolution::class, 'question_id', 'id');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($question) {
+            $question->rightSolutions()->each(function ($rightSolutions) {
+                $rightSolutions->delete();
+            });
+
+            $question->options()->each(function ($options) {
+                $options->delete();
+            });
+        });
+    }
 }

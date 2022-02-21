@@ -13,4 +13,19 @@ class Submit extends Model
         // 'user_id',
         'form_id'
     ];
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class, 'submit_id', 'id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($submit) {
+            $submit->answers()->each(function ($answers) {
+                $answers->delete();
+            });
+        });
+    }
 }

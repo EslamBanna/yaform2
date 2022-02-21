@@ -37,18 +37,20 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::post('/logout', [UserContoller::class, 'logout']);
     Route::post('/update-my-info', [UserContoller::class, 'updateMyInfo']);
     Route::post('/create-template',[FormContoller::class,'createTemplate']);
+    Route::post('/append-template/{template_id}',[FormContoller::class,'appendTemplate']);
     Route::get('/get-templates',[FormContoller::class,'getTemplates']);
     Route::get('/get-template/{templateId}',[FormContoller::class,'getTemplate']);
 
     Route::post('/create-form',[FormContoller::class,'createForm']);
-    Route::post('/append-form/{template_id}',[FormContoller::class,'appendForm']);
+    Route::post('/append-form/{form_id}',[FormContoller::class,'appendForm']);
     Route::get('/get-forms',[FormContoller::class,'getForms']);
     Route::post('/send-form',[FormContoller::class,'sendForm']);
     Route::delete('/delete-form/{formId}', [FormContoller::class,'deleteFormOrQuiz']);
     Route::put('/update-form/{formId}', [FormContoller::class,'updateForm']);
 
     Route::post('/create-quiz',[FormContoller::class,'createQuiz']);
-    Route::delete('/delete-quiz/{quizId}', [FormContoller::class,'deleteFormOrQuiz']);
+    Route::post('/append-quiz/{quiz_id}',[FormContoller::class,'appendQuiz']);
+    // Route::delete('/delete-quiz/{quizId}', [FormContoller::class,'deleteFormOrQuiz']);
     Route::put('/update-quiz/{quizId}', [FormContoller::class,'updateQuiz']);
 
     Route::put('/accept-response/{formId}',[FormContoller::class,'acceptResponse']);
