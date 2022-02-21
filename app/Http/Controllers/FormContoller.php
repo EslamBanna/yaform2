@@ -256,7 +256,7 @@ class FormContoller extends Controller
             if ($request->hasFile('logo')) {
                 $logo = $this->saveImage($request->logo, 'logos');
             }
-            $template_id = Form::insertGetId([
+            $form_id = Form::insertGetId([
                 'user_id' => Auth()->user()->id,
                 'form_type' => ($request->form_type == "classic form" ? '0' : '1'),
                 'image_header' => $image_header ?? "",
@@ -270,7 +270,7 @@ class FormContoller extends Controller
                 'msg' => $request->msg
             ]);
             DB::commit();
-            return $this->returnData('data', $template_id);
+            return $this->returnData('data', $form_id);
             // return $this->returnSuccessMessage('inserted successfully');
         } catch (\Exception $e) {
             DB::rollback();
@@ -282,6 +282,13 @@ class FormContoller extends Controller
     {
         DB::beginTransaction();
         try {
+            $form = Form::find($form_id);
+            if (!$form) {
+                return $this->returnError(202, 'this form is not exist');
+            }
+            if ($form->is_template == 1) {
+                return $this->returnError(202, 'this tempalte is not form');
+            }
             if ($request->has('social_media')) {
                 foreach ($request->social_media as $link) {
                     SocialMediaLink::create([
@@ -466,6 +473,13 @@ class FormContoller extends Controller
     {
         DB::beginTransaction();
         try {
+            $quiz = Form::find($quiz_id);
+            if (!$quiz) {
+                return $this->returnError(202, 'this quiz is not exist');
+            }
+            if ($quiz->is_template == 1) {
+                return $this->returnError(202, 'this tempalte is not quiz');
+            }
             if ($request->has('social_media')) {
                 foreach ($request->social_media as $link) {
                     SocialMediaLink::create([
@@ -611,11 +625,35 @@ class FormContoller extends Controller
             // if ($form->updated == 1) {
             //     return $this->returnError('207', 'the form is updated before');
             // }
-            $form->update([
-                'updated' => 1
+            // $form->update([
+            //     'updated' => 1
+            // ]);
+            // $submits = $form->submits;
+            // $answers = $submits->answers;
+            // return $submits;
+            $image_header = null;
+            if ($request->hasFile('image_header')) {
+                $image_header = $this->saveImage($request->image_header, 'images_header');
+            }
+            $logo = null;
+            if ($request->hasFile('logo')) {
+                $logo = $this->saveImage($request->logo, 'logos');
+            }
+            $form_id = $form->update([
+                // 'user_id' => Auth()->user()->id,
+                'form_type' => ($request->form_type == "classic form" ? '0' : '1'),
+                'image_header' => $image_header ?? "",
+                'header' => $request->header,
+                'is_quiz' => 0,
+                'is_template' => 0,
+                'description' => $request->description,
+                'logo' => $logo,
+                'style_theme' => $request->style_theme,
+                'font_family' => $request->font_family,
+                'msg' => $request->msg
             ]);
-            $submits = $form->submits();
-            return $submits;
+            DB::commit();
+            return $this->returnData('data', $form_id);
 
             #################
             // $rules = [

@@ -47,6 +47,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::post('/send-form',[FormContoller::class,'sendForm']);
     Route::delete('/delete-form/{formId}', [FormContoller::class,'deleteFormOrQuiz']);
     Route::put('/update-form/{formId}', [FormContoller::class,'updateForm']);
+    Route::put('/append-update-form/{formId}', [FormContoller::class,'appendUpdateForm']);
 
     Route::post('/create-quiz',[FormContoller::class,'createQuiz']);
     Route::post('/append-quiz/{quiz_id}',[FormContoller::class,'appendQuiz']);
