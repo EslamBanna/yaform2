@@ -20,8 +20,8 @@ class ExportController extends Controller
             if (!$form) {
                 return $this->returnError(202, 'this form does not exist');
             }
-            $form_questions = Question::where('')->get();
-            $form_answers = Answer::where()->get();
+            $form_questions = Question::where('form_id',$formId)->get();
+            $form_answers = Answer::->get();
             return Excel::download(new ResponsesExport($form_questions, $form_answers), 'test.xlsx');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());

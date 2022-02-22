@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
+use function PHPUnit\Framework\isEmpty;
+
 class FormContoller extends Controller
 {
     use GeneralTrait;
@@ -123,6 +125,10 @@ class FormContoller extends Controller
                     if ($type == '1' || $type == '2' || $type == '3') {
                         $q_type = "11";
                     }
+                    $display_video = 0;
+                    if( isset($question['display_video'])){
+                        $display_video = ($question['display_video'] == true ? 1 : 0);
+                    }
                     $question_id = Question::insertGetId([
                         'form_id' => $template_id,
                         'question'=> $question['question'],
@@ -131,7 +137,7 @@ class FormContoller extends Controller
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
-                        'display_video' => ($question['display_video'] == true ? 1 : 0)
+                        'display_video' => $display_video
                     ]);
                     if (isset($question['options'])) {
                         foreach ($question['options'] as $option)
@@ -338,6 +344,10 @@ class FormContoller extends Controller
                     if ($type == '1' || $type == '2' || $type == '3') {
                         $q_type = "11";
                     }
+                    $display_video = 0;
+                    if( isset($question['display_video'])){
+                        $display_video = ($question['display_video'] == true ? 1 : 0);
+                    }
                     $question_id = Question::insertGetId([
                         'form_id' => $form_id,
                         'type' => $type,
@@ -346,7 +356,7 @@ class FormContoller extends Controller
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
-                        'display_video' => ($question['display_video'] == true ? 1 : 0)
+                        'display_video' => $display_video
                     ]);
                     if (isset($question['options'])) {
                         foreach ($question['options'] as $option)
@@ -485,17 +495,19 @@ class FormContoller extends Controller
                 foreach ($request->questions as $question) {
                     $desc = null;
                     if ($question['type'] == 'image' && $question->hasFile('description')) {
-                        $desc = $this->saveImage($question->description, 'question_images');
+                        $desc = $this->saveImage($question['description'], 'question_images');
                     }
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
                     } elseif ($question['type'] == 'title') {
                         $type = '1';
+                        $desc = $question['description'];
                     } elseif ($question['type'] == 'image') {
                         $type = '2';
                     } elseif ($question['type'] == 'video') {
                         $type = '3';
+                        $desc = $question['description'];
                     }
                     $q_type = null;
                     if ($question['question_type'] == "Short answer") {
@@ -524,6 +536,10 @@ class FormContoller extends Controller
                     if ($type == '1' || $type == '2' || $type == '3') {
                         $q_type = "11";
                     }
+                    $display_video = 0;
+                    if( isset($question['display_video'])){
+                        $display_video = ($question['display_video'] == true ? 1 : 0);
+                    }
                     $question_id = Question::insertGetId([
                         'form_id' => $quiz_id,
                         'type' => $type,
@@ -532,7 +548,7 @@ class FormContoller extends Controller
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
-                        'display_video' => ($question['display_video'] == true ? 1 : 0)
+                        'display_video' => $display_video
                     ]);
                     if (isset($question['options'])) {
                         foreach ($question['options'] as $option)
