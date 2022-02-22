@@ -19,6 +19,7 @@ class FormContoller extends Controller
     use GeneralTrait;
     public function createTemplate(Request $request)
     {
+        return $request;
         DB::beginTransaction();
         try {
             $rules = [
@@ -124,6 +125,7 @@ class FormContoller extends Controller
                     }
                     $question_id = Question::insertGetId([
                         'form_id' => $template_id,
+                        'question'=> $question['question'],
                         'type' => $type,
                         'description' => $desc ?? $question['description'],
                         'question_type' => $q_type,
@@ -220,12 +222,6 @@ class FormContoller extends Controller
             if ($form->user_id != Auth()->user()->id) {
                 return $this->returnError('204', 'form not belongs to you');
             }
-            // if ($form->deleted == 1) {
-            //     return $this->returnError('205', 'this form is deleted before');
-            // }
-            // if ($form->updated == 1) {
-            //     return $this->returnError('205', 'this form is updated before');
-            // }
             $form->update([
                 'msg' => $request->msg
             ]);
@@ -345,6 +341,7 @@ class FormContoller extends Controller
                     $question_id = Question::insertGetId([
                         'form_id' => $form_id,
                         'type' => $type,
+                        'question'=> $question['question'],
                         'description' => $desc ?? $question['description'],
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
@@ -530,6 +527,7 @@ class FormContoller extends Controller
                     $question_id = Question::insertGetId([
                         'form_id' => $quiz_id,
                         'type' => $type,
+                        'question'=> $question['question'],
                         'description' => $desc ?? $question['description'],
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
@@ -856,6 +854,7 @@ class FormContoller extends Controller
                     $question_id = Question::insertGetId([
                         'form_id' => $quiz_id,
                         'type' => $type,
+                        'question'=> $question['question'],
                         'description' => $desc ?? $question['description'],
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
@@ -895,4 +894,5 @@ class FormContoller extends Controller
             return $this->returnError('201', $e->getMessage());
         }
     }
+
 }

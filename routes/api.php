@@ -56,6 +56,10 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
 
     Route::put('/accept-response/{formId}',[FormContoller::class,'acceptResponse']);
     Route::put('/form-setting/{formId}',[FormContoller::class,'formSetting']);
+
+    Route::get('/get-summary-responses/{formId}',[AnswerContoller::class,'getSummaryResponses']);
+    Route::get('/get-question-responses/{questionId}',[AnswerContoller::class,'getQuestionResponses']);
+    Route::get('/get-individual-responses/{submitId}',[AnswerContoller::class,'getIndividualResponses']);
 });
 
 Route::get('/get-form/{formId}',[FormContoller::class,'getForm']);

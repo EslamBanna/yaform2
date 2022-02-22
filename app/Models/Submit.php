@@ -19,6 +19,11 @@ class Submit extends Model
         return $this->hasMany(Answer::class, 'submit_id', 'id');
     }
 
+    public function form()
+    {
+        return $this->belongsTo(Form::class, 'form_id', 'id');
+    }
+
     public static function boot()
     {
         parent::boot();

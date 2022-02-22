@@ -13,6 +13,7 @@ class Question extends Model
         'form_id',
         'type',
         'description',
+        'question',
         'question_type',
         'required',
         'focus',
@@ -124,6 +125,10 @@ class Question extends Model
     public function rightSolutions()
     {
         return $this->hasMany(RightSolution::class, 'question_id', 'id');
+    }
+    public function answers()
+    {
+        return $this->hasMany(Answer::class, 'question_id', 'id');
     }
 
     public static function boot()
