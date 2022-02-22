@@ -21,7 +21,7 @@ class FormContoller extends Controller
     use GeneralTrait;
     public function createTemplate(Request $request)
     {
-        return $request;
+        // return $request;
         DB::beginTransaction();
         try {
             $rules = [
@@ -85,9 +85,13 @@ class FormContoller extends Controller
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
                     $desc = null;
-                    if ($question['type'] == 'image' && $question->hasFile('description')) {
-                        $desc = $this->saveImage($question->description, 'question_images');
-                    }
+                    // if ($question['type'] == 'image' && $question->hasFile('description')) {
+                    //     $desc = $this->saveImage($question->description, 'question_images');
+                    // }else{
+                    //     $desc = $question['description'];
+                    // }
+                    $desc = $question['description'];
+                    // return $desc;
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
@@ -133,7 +137,7 @@ class FormContoller extends Controller
                         'form_id' => $template_id,
                         'question'=> $question['question'],
                         'type' => $type,
-                        'description' => $desc ?? $question['description'],
+                        'description' => $desc,
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
@@ -304,9 +308,13 @@ class FormContoller extends Controller
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
                     $desc = "";
-                    if ($question['type'] == 'image' && $question->hasFile('description')) {
-                        $desc = $this->saveImage($question->description, 'question_images');
-                    }
+                    // if ($question['type'] == 'image' && $question->hasFile('description')) {
+                    //     $desc = $this->saveImage($question->description, 'question_images');
+                    // }else{
+                    //     $desc = $question['description'];
+                    // }
+                    $desc = $question['description'];
+                    // return $desc;
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
@@ -352,7 +360,7 @@ class FormContoller extends Controller
                         'form_id' => $form_id,
                         'type' => $type,
                         'question'=> $question['question'],
-                        'description' => $desc ?? $question['description'],
+                        'description' => $desc,
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
@@ -384,7 +392,7 @@ class FormContoller extends Controller
                     $q->select('id', 'name');
                 })
                 ->where('id', $formId)
-                ->where('is_template', 0)
+                // ->where('is_template', 0)
                 ->first();
             if (!$form) {
                 return $this->returnError('202', 'form not founded');
@@ -398,7 +406,7 @@ class FormContoller extends Controller
     public function getForms()
     {
         try {
-            $forms = Form::select('id', 'logo', 'header', 'form_type', 'description', 'updated_at')
+            $forms = Form::select('id', 'logo', 'header', 'form_type', 'description', 'updated_at', 'is_quiz','is_template')
                 ->where('user_id', Auth()->user()->id)
                 ->orderBy('id', 'DESC')->get();
             return $this->returnData('data', $forms);
@@ -494,20 +502,22 @@ class FormContoller extends Controller
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
                     $desc = null;
-                    if ($question['type'] == 'image' && $question->hasFile('description')) {
-                        $desc = $this->saveImage($question['description'], 'question_images');
-                    }
+                    // if ($question['type'] == 'image' && $question->hasFile('description')) {
+                    //     $desc = $this->saveImage($question['description'], 'question_images');
+                    // }else{
+                    //     $desc = $question['description'];
+                    // }
+                    $desc = $question['description'];
+                    // return $desc;
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
                     } elseif ($question['type'] == 'title') {
                         $type = '1';
-                        $desc = $question['description'];
                     } elseif ($question['type'] == 'image') {
                         $type = '2';
                     } elseif ($question['type'] == 'video') {
                         $type = '3';
-                        $desc = $question['description'];
                     }
                     $q_type = null;
                     if ($question['question_type'] == "Short answer") {
@@ -544,7 +554,7 @@ class FormContoller extends Controller
                         'form_id' => $quiz_id,
                         'type' => $type,
                         'question'=> $question['question'],
-                        'description' => $desc ?? $question['description'],
+                        'description' => $desc,
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
@@ -688,9 +698,10 @@ class FormContoller extends Controller
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
                     $desc = "";
-                    if ($question['type'] == 'image' && $question->hasFile('description')) {
-                        $desc = $this->saveImage($question->description, 'question_images');
-                    }
+                    // if ($question['type'] == 'image' && $question->hasFile('description')) {
+                    //     $desc = $this->saveImage($question->description, 'question_images');
+                    // }
+                    $desc = $question['description'];
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';

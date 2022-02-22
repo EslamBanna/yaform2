@@ -62,6 +62,23 @@ class AnswerContoller extends Controller
         }
     }
 
+    public function uploadImage(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $file_name = '';
+            if (!$request->hasFile('image')) {
+                return $this->returnError(202, 'you must send the file');
+            }
+            $file_name = $this->saveImage($request->image, 'question_images');
+            DB::commit();
+            return $this->returnData('data', $file_name);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
     public function getSummaryResponses($formId)
     {
         try {
@@ -104,7 +121,7 @@ class AnswerContoller extends Controller
     public function getIndividualResponses($submitId)
     {
         try {
-            $submit = Submit::with(['form.Questions.options','form.Questions.answers' => function ($q) use ($submitId) {
+            $submit = Submit::with(['form.Questions.options', 'form.Questions.answers' => function ($q) use ($submitId) {
                 $q->where('submit_id', $submitId);
             }])->find($submitId);
             if (!$submit) {

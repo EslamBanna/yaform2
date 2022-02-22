@@ -139,14 +139,12 @@
 							}
 						],
 						"url": {
-							"raw": "https://yaform.new.wework.souqeljuma.com/api/auth/get-my-info",
+							"raw": "https://yaformelbanna.we-work.pro/api/auth/get-my-info",
 							"protocol": "https",
 							"host": [
-								"yaform",
-								"new",
-								"wework",
-								"souqeljuma",
-								"com"
+								"yaformelbanna",
+								"we-work",
+								"pro"
 							],
 							"path": [
 								"api",
@@ -432,7 +430,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test\",\r\n            \"description\": \"Q1\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": \"true\",\r\n            \"focus\": \"true\",\r\n            \"display_video\": \"true\",\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10\",\r\n                    \"text\": \"option 1\"\r\n                },\r\n                {\r\n                    \"value\": \"20\",\r\n                    \"text\": \"option 2\"\r\n                },\r\n                {\r\n                    \"value\": \"30\",\r\n                    \"text\": \"option 3\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test\",\r\n            \"description\": \"Q1\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": \"true\",\r\n            \"focus\": \"true\",\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10\",\r\n                    \"text\": \"option 1\"\r\n                },\r\n                {\r\n                    \"value\": \"20\",\r\n                    \"text\": \"option 2\"\r\n                },\r\n                {\r\n                    \"value\": \"30\",\r\n                    \"text\": \"option 3\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -440,7 +438,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/append-form/4",
+							"raw": "localhost:8000/api/auth/append-form/5",
 							"host": [
 								"localhost"
 							],
@@ -449,7 +447,7 @@
 								"api",
 								"auth",
 								"append-form",
-								"4"
+								"5"
 							]
 						}
 					},
@@ -1311,6 +1309,31 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "export",
+			"item": []
+		},
+		{
+			"name": "upload image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://yaformelbanna.we-work.pro/api/upload-image",
+					"protocol": "https",
+					"host": [
+						"yaformelbanna",
+						"we-work",
+						"pro"
+					],
+					"path": [
+						"api",
+						"upload-image"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
