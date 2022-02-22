@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnswerContoller;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FormContoller;
 use App\Http\Controllers\UserContoller;
 use Illuminate\Http\Request;
@@ -60,7 +61,11 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::get('/get-summary-responses/{formId}',[AnswerContoller::class,'getSummaryResponses']);
     Route::get('/get-question-responses/{questionId}',[AnswerContoller::class,'getQuestionResponses']);
     Route::get('/get-individual-responses/{submitId}',[AnswerContoller::class,'getIndividualResponses']);
+
 });
+
+
+Route::get('/export-excel/{formId}',[ExportController::class,'exportExcel']);
 
 Route::get('/get-form/{formId}',[FormContoller::class,'getForm']);
 Route::post('/submit-answer',[AnswerContoller::class,'submitAnswer']);
