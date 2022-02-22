@@ -1312,13 +1312,45 @@
 		},
 		{
 			"name": "export",
-			"item": []
+			"item": [
+				{
+					"name": "test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/export-excel/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"export-excel",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "upload image",
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/WhatsApp Image 2021-09-25 at 1.33.08 AM.jpeg"
+						}
+					]
+				},
 				"url": {
 					"raw": "https://yaformelbanna.we-work.pro/api/upload-image",
 					"protocol": "https",
