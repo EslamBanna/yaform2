@@ -9,14 +9,15 @@ use App\Models\Answer;
 use App\Models\Form;
 use App\Models\Question;
 use Excel;
+use PDF;
 
 class ExportController extends Controller
 {
     use GeneralTrait;
-    public function exportExcel($formId)
+
+    private function prepareData($formId)
     {
         try {
-
             $form_all = Form::with('submits.answers')->find($formId);
             $form_counted = Form::with(['submits.answers' => function ($q) {
                 $q->select('*')->selectRaw('count(question_id) as answer_len')->groupBy(['question_id', 'submit_id']);
@@ -49,7 +50,50 @@ class ExportController extends Controller
                 }
             }
             $form_questions = Question::select('id', 'question')->where('form_id', $formId)->get();
-            return Excel::download(new ResponsesExport($form_questions, collect($response)), 'test.xlsx');
+            $data = [
+                'responses' => $response,
+                'form_questions' => $form_questions
+            ];
+            return $data;
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
+    public function exportExcel($formId)
+    {
+        try {
+            $data = $this->prepareData($formId);
+            return Excel::download(new ResponsesExport($data['form_questions'], collect($data['response'])), 'form_answers.xlsx');
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
+
+    public function showPdf($formId)
+    {
+        try {
+            $data = $this->prepareData($formId);
+            $response = $data['responses'];
+            $form_questions = $data['form_questions'];
+            return view('pdf', compact('response', 'form_questions'));
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
+
+    public function exportPdf($formId = 1)
+    {
+        try {
+            $data = $this->prepareData($formId);
+            // $data = Answer::all();
+            // $data = Employee::all();
+            // share data to view
+            $response = $data['responses'];
+            $form_questions = $data['form_questions'];
+            // view()->share('pdf', $data);
+            $pdf = PDF::loadView('pdf', compact('response','form_questions'));
+            // download PDF file with download method
+            return $pdf->download('pdf_file.pdf');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
         }
