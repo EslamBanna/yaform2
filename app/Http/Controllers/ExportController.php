@@ -63,7 +63,7 @@ class ExportController extends Controller
     {
         try {
             $data = $this->prepareData($formId);
-            return Excel::download(new ResponsesExport($data['form_questions'], collect($data['response'])), 'form_answers.xlsx');
+            return Excel::download(new ResponsesExport($data['form_questions'], collect($data['responses'])), 'form_answers.xlsx');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
         }
@@ -89,6 +89,21 @@ class ExportController extends Controller
             $form_questions = $data['form_questions'];
             $pdf = PDF::loadView('pdf', compact('response', 'form_questions', 'formId'));
             return $pdf->download('pdf_file.pdf');
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
+
+    public function exportVcf($formId)
+    {
+        try {
+            $form = Form::with(['Questions' => function($q){
+                $q->where('question_type', '10')->get();
+            }])->find($formId);
+            if (!$form) {
+                return $this->returnError(202, 'this form is not availabale');
+            }
+            return $form;
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
         }
