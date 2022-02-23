@@ -75,24 +75,19 @@ class ExportController extends Controller
             $data = $this->prepareData($formId);
             $response = $data['responses'];
             $form_questions = $data['form_questions'];
-            return view('pdf', compact('response', 'form_questions'));
+            return view('pdf', compact('response', 'form_questions', 'formId'));
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
         }
     }
 
-    public function exportPdf($formId = 1)
+    public function exportPdf($formId)
     {
         try {
             $data = $this->prepareData($formId);
-            // $data = Answer::all();
-            // $data = Employee::all();
-            // share data to view
             $response = $data['responses'];
             $form_questions = $data['form_questions'];
-            // view()->share('pdf', $data);
-            $pdf = PDF::loadView('pdf', compact('response','form_questions'));
-            // download PDF file with download method
+            $pdf = PDF::loadView('pdf', compact('response', 'form_questions', 'formId'));
             return $pdf->download('pdf_file.pdf');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());

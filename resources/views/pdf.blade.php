@@ -12,7 +12,7 @@
     <div class="container mt-5">
         <h2 class="text-center mb-3">Eslam Elbanna Coding</h2>
         <div class="d-flex justify-content-end mb-4">
-            <a class="btn btn-primary" href="{{ URL::to('/api/export-pdf/1') }}">Export to PDF</a>
+            <a class="btn btn-primary" href="{{ URL::to('/api/export-pdf', $formId) }}">Export to PDF</a>
         </div>
         <table class="table table-bordered mb-5">
             <thead>
