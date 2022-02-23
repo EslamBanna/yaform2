@@ -97,13 +97,45 @@ class ExportController extends Controller
     public function exportVcf($formId)
     {
         try {
-            $form = Form::with(['Questions' => function($q){
-                $q->where('question_type', '10')->get();
-            }])->find($formId);
+            $form = Form::find($formId);
             if (!$form) {
                 return $this->returnError(202, 'this form is not availabale');
             }
+            // return $form;
+            // $answers_name = Question::with(['answers' => function($k){
+            //     $k->select('question_id', 'answer');
+            // }])
+            // ->where('form_id', $formId)
+            // ->where('question_type', '9')
+            // // ->orWhere('question_type', '10')
+            // ->groupBy('question_type')
+            // ->get();
+
+            // $answers_phone = Question::with(['answers' => function($k){
+            //     $k->select('question_id', 'answer');
+            // }])
+            // ->where('form_id', $formId)
+            // // ->where('question_type', '9')
+            // ->where('question_type', '10')
+            // ->groupBy('question_type')
+            // ->get();
+
+
+            // return $questions;
+            // foreach($form['questions'] as $question){
+            //     return $question['answers'];
+            // }
+
+
+            $form = Form::with(['Questions' => function($w){
+                $w->where('question_type', '9')
+                ->orWhere('question_type', '10')->get();
+            },'submits.answers' => function ($q) {
+                $q->select('question_id','submit_id','answer','id');
+            }])->find($formId);
+
             return $form;
+
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
         }
