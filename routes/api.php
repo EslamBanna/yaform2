@@ -66,13 +66,13 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
 
     Route::get('/export-excel/{formId}', [ExportController::class, 'exportExcel']);
     Route::get('/show-pdf/{formId}', [ExportController::class, 'showPdf']);
+    Route::get('/export-vcf/{formId}', [ExportController::class, 'exportVcf']);
 
   
 });
 
 Route::get('/export-pdf/{formId}', [ExportController::class, 'exportPdf']);
 
-Route::get('/export-vcf/{formId}', [ExportController::class, 'exportVcf']);
 
 Route::get('/get-form/{formId}', [FormContoller::class, 'getForm']);
 Route::post('/submit-answer', [AnswerContoller::class, 'submitAnswer']);

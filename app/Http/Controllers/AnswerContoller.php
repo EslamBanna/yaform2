@@ -72,7 +72,14 @@ class AnswerContoller extends Controller
             }
             $file_name = $this->saveImage($request->image, 'question_images');
             DB::commit();
-            return $this->returnData('data', $file_name);
+
+            $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+            $full_path = ($file_name == null ? '' : $actual_link . 'images/question_images/' . $file_name);
+            $data = [
+                'file_name' => $file_name,
+                'full_path' => $full_path
+            ];
+            return $this->returnData('data', $data);
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->returnError('201', $e->getMessage());

@@ -23,11 +23,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/unauth/login",
+							"raw": "https://yaformelbanna.we-work.pro/api/unauth/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"yaformelbanna",
+								"we-work",
+								"pro"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"unauth",
@@ -403,11 +405,13 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/create-form",
+							"raw": "https://yaformelbanna.we-work.pro/api/auth/create-form",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"yaformelbanna",
+								"we-work",
+								"pro"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"auth",
@@ -459,11 +463,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/api/get-form/1",
+							"raw": "https://yaformelbanna.we-work.pro/api/get-form/1",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"yaformelbanna",
+								"we-work",
+								"pro"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"get-form",
@@ -726,7 +732,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/append-template/7",
+							"raw": "localhost:8000/api/auth/append-template/8",
 							"host": [
 								"localhost"
 							],
@@ -735,7 +741,7 @@
 								"api",
 								"auth",
 								"append-template",
-								"7"
+								"8"
 							]
 						}
 					},
@@ -795,7 +801,7 @@
 					"response": []
 				},
 				{
-					"name": "update tempalte",
+					"name": "update template",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -846,7 +852,7 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/update-tempalte/7",
+							"raw": "localhost:8000/api/auth/update-template/8",
 							"host": [
 								"localhost"
 							],
@@ -854,15 +860,15 @@
 							"path": [
 								"api",
 								"auth",
-								"update-tempalte",
-								"7"
+								"update-template",
+								"8"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "append update tempalte",
+					"name": "append update template",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -874,7 +880,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 1,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": [11,12,13]\r\n}",
+							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 28,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": [11,12,15]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -882,7 +888,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/append-update-tempalte/7",
+							"raw": "localhost:8000/api/auth/append-update-template/8",
 							"host": [
 								"localhost"
 							],
@@ -890,8 +896,8 @@
 							"path": [
 								"api",
 								"auth",
-								"append-update-tempalte",
-								"7"
+								"append-update-template",
+								"8"
 							]
 						}
 					},
@@ -1228,7 +1234,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 19,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\",\r\n                \"tanta\",\r\n                \"alex\"\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\"\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": []\r\n}",
+							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 19,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\",\r\n                \"tanta\",\r\n                \"alex\"\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\"\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": [11,12]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1438,7 +1444,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/api/auth/export-pdf/1",
+							"raw": "http://localhost:8000/api/export-pdf/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1446,7 +1452,6 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"auth",
 								"export-pdf",
 								"1"
 							]
@@ -1460,7 +1465,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/export-vcf/1",
+							"raw": "http://localhost:8000/api/auth/export-vcf/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1468,6 +1473,7 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"auth",
 								"export-vcf",
 								"1"
 							]
