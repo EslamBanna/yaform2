@@ -54,6 +54,8 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::post('/create-quiz', [FormContoller::class, 'createQuiz']);
     Route::post('/append-quiz/{quiz_id}', [FormContoller::class, 'appendQuiz']);
     // Route::delete('/delete-quiz/{quizId}', [FormContoller::class,'deleteFormOrQuiz']);
+    // this is comment
+
     Route::post('/update-quiz/{quizId}', [FormContoller::class, 'updateQuiz']);
     Route::put('/append-update-quiz/{quizId}', [FormContoller::class, 'appendUpdateQuiz']);
 
@@ -67,8 +69,6 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::get('/export-excel/{formId}', [ExportController::class, 'exportExcel']);
     Route::get('/show-pdf/{formId}', [ExportController::class, 'showPdf']);
     Route::get('/export-vcf/{formId}', [ExportController::class, 'exportVcf']);
-
-  
 });
 
 Route::get('/export-pdf/{formId}', [ExportController::class, 'exportPdf']);
