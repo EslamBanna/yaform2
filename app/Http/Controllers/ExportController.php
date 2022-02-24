@@ -10,6 +10,11 @@ use App\Models\Form;
 use App\Models\Question;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
+use JeroenDesloovere\VCard\VCard;
+use JeroenDesloovere\VCard\Property\Name;
+use JeroenDesloovere\VCard\Formatter\Formatter;
+use JeroenDesloovere\VCard\Formatter\VcfFormatter;
+use JeroenDesloovere\VCard\Property\Telephone;
 
 // use Excel;
 // use PDF;
@@ -79,7 +84,7 @@ class ExportController extends Controller
             $response = $data['responses'];
             $show_button = true;
             $form_questions = $data['form_questions'];
-            return view('pdf', compact('response', 'form_questions', 'formId','show_button'));
+            return view('pdf', compact('response', 'form_questions', 'formId', 'show_button'));
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
         }
@@ -105,41 +110,54 @@ class ExportController extends Controller
             if (!$form) {
                 return $this->returnError(202, 'this form is not availabale');
             }
-            // return $form;
-            // $answers_name = Question::with(['answers' => function($k){
-            //     $k->select('question_id', 'answer');
-            // }])
-            // ->where('form_id', $formId)
-            // ->where('question_type', '9')
-            // // ->orWhere('question_type', '10')
-            // ->groupBy('question_type')
-            // ->get();
 
-            // $answers_phone = Question::with(['answers' => function($k){
-            //     $k->select('question_id', 'answer');
-            // }])
-            // ->where('form_id', $formId)
-            // // ->where('question_type', '9')
-            // ->where('question_type', '10')
-            // ->groupBy('question_type')
-            // ->get();
+            $q_name = Question::where('form_id', $formId)
+                ->where('question_type', '9')
+                ->select('id')
+                ->first();
 
+            $q_phone = Question::where('form_id', $formId)
+                ->where('question_type', '10')
+                ->select('id')
+                ->first();
 
-            // return $questions;
-            // foreach($form['questions'] as $question){
-            //     return $question['answers'];
-            // }
-
-
-            $form = Form::with(['Questions' => function($w){
-                $w->where('question_type', '9')
-                ->orWhere('question_type', '10')->get();
-            },'submits.answers' => function ($q) {
-                $q->select('question_id','submit_id','answer','id');
+            $form = Form::with(['submits.answers' => function ($q) use ($q_name, $q_phone) {
+                $q->where('question_id', $q_name['id'])
+                    ->orWhere('question_id', $q_phone['id'])->get();
             }])->find($formId);
 
-            return $form;
-
+            $formatter = new Formatter(new VcfFormatter(), 'yaform-vcard-export '. $form['header']);
+            foreach ($form['submits'] as $submit) {
+                $vcard = null;
+                $pointer = 0;
+                $rand_name = rand(2, 100);
+                $name = "yaform " . $rand_name;
+                $phone = null;
+                foreach ($submit['answers'] as $answer) {
+                    if ($answer['question_id'] == $q_name['id']) {
+                        // name
+                        $name = $answer['answer'];
+                        $pointer++;
+                    } elseif ($answer['question_id'] == $q_phone['id']) {
+                        // phone
+                        $phone = $answer['answer'];
+                        $pointer++;
+                    }
+                    if ($pointer == 2) {
+                        $lastname = "";
+                        $firstname = $name;
+                        $additional = "";
+                        $prefix = "";
+                        $suffix = "";
+                        $vcard = new VCard();
+                        $vcard->add(new Telephone($phone));
+                        $vcard->add(new Name($lastname, $firstname, $additional, $prefix, $suffix));
+                        $formatter->addVCard($vcard);
+                    }
+                }
+            }
+            $formatter->download();
+            // return $this->returnSuccessMessage('exported successfully');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
         }
