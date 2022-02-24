@@ -874,11 +874,11 @@ class FormContoller extends Controller
         }
     }
 
-    public function appendUpdateQuiz(Request $request, $formId)
+    public function appendUpdateQuiz(Request $request, $quizId)
     {
         DB::beginTransaction();
         try {
-            $quiz = Form::find($formId);
+            $quiz = Form::find($quizId);
             if (!$quiz) {
                 return $this->returnError('202', 'the quiz does not exist');
             }
@@ -896,7 +896,7 @@ class FormContoller extends Controller
                 $quiz->socialMedia()->delete();
                 foreach ($request->social_media as $link) {
                     SocialMediaLink::create([
-                        'form_id' => $formId,
+                        'form_id' => $quizId,
                         'type' => $link['type'],
                         'url' => $link['url']
                     ]);
@@ -1046,6 +1046,217 @@ class FormContoller extends Controller
                     $question_find = Question::find($deleted_question_id);
                     if (!$question_find) {
                         return $this->returnError(202, 'this question' . $deleted_question_id . ' is not exist');
+                    }
+                    $question_find->delete();
+                }
+            }
+            DB::commit();
+            return $this->returnSuccessMessage('updated successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function updateTemplate($templateId, Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $tempalte = Form::find($templateId);
+            if (!$tempalte) {
+                return $this->returnError('202', 'the tempalte does not exist');
+            }
+            if ($tempalte->user_id != Auth()->user()->id) {
+                return $this->returnError('203', 'the tempalte does not belongs to you');
+            }
+            if ($tempalte->is_quiz == 1) {
+                return $this->returnError('204', 'this is not tempalte');
+            }
+            if ($tempalte->is_template == 0) {
+                return $this->returnError('205', 'this is not template ');
+            }
+            $image_header = null;
+            if ($request->hasFile('image_header')) {
+                $image_header = $this->saveImage($request->image_header, 'images_header');
+            }
+            $logo = null;
+            if ($request->hasFile('logo')) {
+                $logo = $this->saveImage($request->logo, 'logos');
+            }
+            if ($image_header == null) {
+                $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/images_header/');
+                $image_header = substr($tempalte->image_header, $photo_len);
+            }
+            if ($logo == null) {
+                $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/logos/');
+                $logo = substr($tempalte->logo, $photo_len);
+            }
+
+            $tempalte->update([
+                // 'form_type' => ($request->form_type == "classic form" ? '0' : '1'),
+                'image_header' => $image_header,
+                'header' => $request->header ?? $tempalte->header,
+                'is_quiz' => 0,
+                'is_template' => 0,
+                'description' => $request->description ?? $tempalte->description,
+                'logo' => $logo,
+                'style_theme' => $request->style_theme ?? $tempalte->style_theme,
+                'font_family' => $request->font_family ?? $tempalte->font_family,
+                'msg' => $request->msg ?? $tempalte->msg
+            ]);
+            DB::commit();
+            return $this->returnSuccessMessage('updated successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function appendUpdateTemplate(Request $request, $templateId)
+    {
+        DB::beginTransaction();
+        try {
+            $tempalte = Form::find($templateId);
+            if (!$tempalte) {
+                return $this->returnError('202', 'the tempalte does not exist');
+            }
+            if ($tempalte->user_id != Auth()->user()->id) {
+                return $this->returnError('203', 'the tempalte does not belongs to you');
+            }
+            if ($tempalte->is_quiz == 1) {
+                return $this->returnError('204', 'this is not tempalte');
+            }
+            if ($tempalte->is_template == 0) {
+                return $this->returnError('205', 'this is not template ');
+            }
+
+            if ($request->has('social_media')) {
+                $tempalte->socialMedia()->delete();
+                foreach ($request->social_media as $link) {
+                    SocialMediaLink::create([
+                        'form_id' => $templateId,
+                        'type' => $link['type'],
+                        'url' => $link['url']
+                    ]);
+                }
+            }
+            if ($request->has('questions')) {
+                foreach ($request->questions as $question) {
+                    $type = null;
+                    if ($question['type'] == 'question') {
+                        $type = '0';
+                    } elseif ($question['type'] == 'title') {
+                        $type = '1';
+                    } elseif ($question['type'] == 'image') {
+                        $type = '2';
+                    } elseif ($question['type'] == 'video') {
+                        $type = '3';
+                    }
+                    $q_type = null;
+                    if ($question['question_type'] == "Short answer") {
+                        $q_type = "0";
+                    } elseif ($question['question_type'] == "Paragraph") {
+                        $q_type = "1";
+                    } elseif ($question['question_type'] == "Multiple choice") {
+                        $q_type = "2";
+                    } elseif ($question['question_type'] == "Checkboxes") {
+                        $q_type = "3";
+                    } elseif ($question['question_type'] == "Dropdown") {
+                        $q_type = "4";
+                    } elseif ($question['question_type'] == "Date") {
+                        $q_type = "5";
+                    } elseif ($question['question_type'] == "Time") {
+                        $q_type = "6";
+                    } elseif ($question['question_type'] == "Phone number") {
+                        $q_type = "7";
+                    } elseif ($question['question_type'] == "Email") {
+                        $q_type = "8";
+                    } elseif ($question['question_type'] == "Name") {
+                        $q_type = "9";
+                    } elseif ($question['question_type'] == "Number") {
+                        $q_type = "10";
+                    }
+                    if ($type == '1' || $type == '2' || $type == '3') {
+                        $q_type = "11";
+                    }
+
+                    if (!isset($question['question_id'])) {
+                        $display_video = 0;
+                        if (isset($question['display_video'])) {
+                            $display_video = ($question['display_video'] == true ? 1 : 0);
+                        }
+                        $question_id = Question::insertGetId([
+                            'form_id' => $tempalte->id,
+                            'type' => $type,
+                            'question' => $question['question'],
+                            'description' => $question['description'],
+                            'question_type' => $q_type,
+                            'required' => ($question['required'] == true ? 1 : 0),
+                            'focus' => ($question['focus'] == true ? 1 : 0),
+                            'display_video' => $display_video
+                        ]);
+                        if (isset($question['options'])) {
+                            foreach ($question['options'] as $option)
+                                Option::create([
+                                    'question_id' => $question_id,
+                                    'value' => $option['value'],
+                                    'text' => $option['text']
+                                ]);
+                        }
+                    } else {
+                        $question_find = Question::find($question['question_id']);
+                        if (!$question_find) {
+                            return $this->returnError(202, 'this question ' . $question['question_id'] . ' is not exist');
+                            // return $this->returnError(202, 'this question is not exist');
+                        }
+
+                        $q_required = null;
+                        if (isset($question['required'])) {
+                            $q_required = ($question['required'] == true ? 1 : 0);
+                        } else {
+                            $q_required = ($question_find->required == false ? 0 : 1);
+                        }
+
+                        $q_focus = null;
+                        if (isset($question['focus'])) {
+                            $q_focus = ($question['focus'] == true ? 1 : 0);
+                        } else {
+                            $q_focus = ($question_find->focus == true ? 1 : 0);
+                        }
+
+                        $display_video = null;
+                        if (isset($question['display_video'])) {
+                            $display_video = ($question['display_video'] == true ? 1 : 0);
+                        } else {
+                            $display_video = ($question_find->display_video == true ? 1 : 0);
+                        }
+                        $question_find->update([
+                            'type' => $type ?? $question_find->type,
+                            'description' => $question['description'] ?? $question_find->description,
+                            'question' => $question['question'] ?? $question_find->question,
+                            'question_type' => $q_type ?? $question_find->question_type,
+                            'required' => $q_required,
+                            'focus' => $q_focus,
+                            'display_video' => $display_video
+                        ]);
+                        if (isset($question['options'])) {
+                            $question_find->options()->delete();
+                            foreach ($question['options'] as $option) {
+                                Option::create([
+                                    'question_id' => $question_find['id'],
+                                    'value' => $option['value'],
+                                    'text' => $option['text']
+                                ]);
+                            }
+                        }
+                    }
+                }
+            }
+            if ($request->has('deleted_questions_id')) {
+                foreach ($request->deleted_questions_id as $deleted_question_id) {
+                    $question_find = Question::find($deleted_question_id);
+                    if (!$question_find) {
+                        return $this->returnError(202, 'this question ' . $deleted_question_id . ' is not exist');
                     }
                     $question_find->delete();
                 }

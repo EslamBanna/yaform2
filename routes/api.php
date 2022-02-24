@@ -40,6 +40,8 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::post('/append-template/{template_id}', [FormContoller::class, 'appendTemplate']);
     Route::get('/get-templates', [FormContoller::class, 'getTemplates']);
     Route::get('/get-template/{templateId}', [FormContoller::class, 'getTemplate']);
+    Route::post('/update-template/{templateId}', [FormContoller::class, 'updateTemplate']);
+    Route::put('/append-update-template/{templateId}', [FormContoller::class, 'appendUpdateTemplate']);
 
     Route::post('/create-form', [FormContoller::class, 'createForm']);
     Route::post('/append-form/{form_id}', [FormContoller::class, 'appendForm']);
@@ -53,7 +55,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::post('/append-quiz/{quiz_id}', [FormContoller::class, 'appendQuiz']);
     // Route::delete('/delete-quiz/{quizId}', [FormContoller::class,'deleteFormOrQuiz']);
     Route::post('/update-quiz/{quizId}', [FormContoller::class, 'updateQuiz']);
-    Route::put('/append-update-quiz/{formId}', [FormContoller::class, 'appendUpdateQuiz']);
+    Route::put('/append-update-quiz/{quizId}', [FormContoller::class, 'appendUpdateQuiz']);
 
     Route::put('/accept-response/{formId}', [FormContoller::class, 'acceptResponse']);
     Route::put('/form-setting/{formId}', [FormContoller::class, 'formSetting']);

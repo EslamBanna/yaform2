@@ -726,7 +726,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/append-template/1",
+							"raw": "localhost:8000/api/auth/append-template/7",
 							"host": [
 								"localhost"
 							],
@@ -735,7 +735,7 @@
 								"api",
 								"auth",
 								"append-template",
-								"1"
+								"7"
 							]
 						}
 					},
@@ -789,6 +789,109 @@
 								"api",
 								"auth",
 								"get-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update tempalte",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "form_type",
+									"value": "card form",
+									"type": "text"
+								},
+								{
+									"key": "header",
+									"value": "test template updated",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test template updated",
+									"type": "text"
+								},
+								{
+									"key": "style_theme",
+									"value": "defalut",
+									"type": "text"
+								},
+								{
+									"key": "font_family",
+									"value": "defalut-font",
+									"type": "text"
+								},
+								{
+									"key": "msg",
+									"value": "success submit updated",
+									"type": "text"
+								},
+								{
+									"key": "image_header",
+									"type": "file",
+									"src": "/E:/WhatsApp Image 2021-09-25 at 1.33.08 AM.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/update-tempalte/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"update-tempalte",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "append update tempalte",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 1,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": [11,12,13]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/append-update-tempalte/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"append-update-tempalte",
+								"7"
 							]
 						}
 					},
@@ -1003,7 +1106,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/append-quiz/2",
+							"raw": "localhost:8000/api/auth/append-quiz/6",
 							"host": [
 								"localhost"
 							],
@@ -1012,7 +1115,7 @@
 								"api",
 								"auth",
 								"append-quiz",
-								"2"
+								"6"
 							]
 						}
 					},
@@ -1097,7 +1200,7 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/update-quiz/2",
+							"raw": "localhost:8000/api/auth/update-quiz/6",
 							"host": [
 								"localhost"
 							],
@@ -1106,7 +1209,7 @@
 								"api",
 								"auth",
 								"update-quiz",
-								"2"
+								"6"
 							]
 						}
 					},
@@ -1125,7 +1228,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 1,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\",\r\n                \"tanta\",\r\n                \"alex\"\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\"\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": [15]\r\n}",
+							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 19,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\",\r\n                \"tanta\",\r\n                \"alex\"\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\"\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": []\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1133,7 +1236,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/append-update-quiz/2",
+							"raw": "localhost:8000/api/auth/append-update-quiz/6",
 							"host": [
 								"localhost"
 							],
@@ -1142,7 +1245,7 @@
 								"api",
 								"auth",
 								"append-update-quiz",
-								"2"
+								"6"
 							]
 						}
 					},
