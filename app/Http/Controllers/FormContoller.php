@@ -21,7 +21,6 @@ class FormContoller extends Controller
     use GeneralTrait;
     public function createTemplate(Request $request)
     {
-        // return $request;
         DB::beginTransaction();
         try {
             $rules = [
@@ -84,14 +83,6 @@ class FormContoller extends Controller
             }
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
-                    $desc = null;
-                    // if ($question['type'] == 'image' && $question->hasFile('description')) {
-                    //     $desc = $this->saveImage($question->description, 'question_images');
-                    // }else{
-                    //     $desc = $question['description'];
-                    // }
-                    $desc = $question['description'];
-                    // return $desc;
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
@@ -137,7 +128,7 @@ class FormContoller extends Controller
                         'form_id' => $template_id,
                         'question' => $question['question'],
                         'type' => $type,
-                        'description' => $desc,
+                        'description' => $question['description'],
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
@@ -165,10 +156,8 @@ class FormContoller extends Controller
         try {
             $templates = Form::with(['Questions.options', 'socialMedia'])
                 ->where('is_template', 1)
-                // ->where('deleted', 0)
-                // ->where('updated', 0)
-                ->orderBy('id', 'DESC')->get();
-            // ->get();
+                ->orderBy('id', 'DESC')
+                ->get();
             return $this->returnData('data', $templates);
         } catch (\Exception $e) {
             return $this->returnError('201', $e->getMessage());
@@ -180,8 +169,6 @@ class FormContoller extends Controller
             $template = Form::with(['Questions.options', 'socialMedia'])
                 ->where('id', $templateId)
                 ->where('is_template', 1)
-                // ->where('deleted', 0)
-                // ->where('updated', 0)
                 ->first();
 
             if (!$template) {
@@ -205,12 +192,6 @@ class FormContoller extends Controller
             if ($form->user_id != Auth()->user()->id) {
                 return $this->returnError('204', 'form not belongs to you');
             }
-            // if ($form->deleted == 1) {
-            //     return $this->returnError('205', 'this form is deleted before');
-            // }
-            // if ($form->updated == 1) {
-            //     return $this->returnError('205', 'this form is updated before');
-            // }
             $form->update([
                 'accept_response' => $request->accept_response
             ]);
@@ -243,7 +224,6 @@ class FormContoller extends Controller
 
     public function createForm(Request $request)
     {
-        // return $request;
         DB::beginTransaction();
         try {
             $rules = [
@@ -278,7 +258,6 @@ class FormContoller extends Controller
             ]);
             DB::commit();
             return $this->returnData('data', $form_id);
-            // return $this->returnSuccessMessage('inserted successfully');
         } catch (\Exception $e) {
             DB::rollback();
             return $this->returnError('201', $e->getMessage());
@@ -307,14 +286,6 @@ class FormContoller extends Controller
             }
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
-                    $desc = "";
-                    // if ($question['type'] == 'image' && $question->hasFile('description')) {
-                    //     $desc = $this->saveImage($question->description, 'question_images');
-                    // }else{
-                    //     $desc = $question['description'];
-                    // }
-                    $desc = $question['description'];
-                    // return $desc;
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
@@ -360,7 +331,7 @@ class FormContoller extends Controller
                         'form_id' => $form_id,
                         'type' => $type,
                         'question' => $question['question'],
-                        'description' => $desc,
+                        'description' => $question['description'],
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
@@ -501,14 +472,6 @@ class FormContoller extends Controller
             }
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
-                    $desc = null;
-                    // if ($question['type'] == 'image' && $question->hasFile('description')) {
-                    //     $desc = $this->saveImage($question['description'], 'question_images');
-                    // }else{
-                    //     $desc = $question['description'];
-                    // }
-                    $desc = $question['description'];
-                    // return $desc;
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
@@ -554,7 +517,7 @@ class FormContoller extends Controller
                         'form_id' => $quiz_id,
                         'type' => $type,
                         'question' => $question['question'],
-                        'description' => $desc,
+                        'description' => $question['description'],
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
                         'focus' => ($question['focus'] == true ? 1 : 0),
@@ -647,7 +610,6 @@ class FormContoller extends Controller
             }
 
             $form->update([
-                // 'form_type' => ($request->form_type == "classic form" ? '0' : '1'),
                 'image_header' => $image_header,
                 'header' => $request->header ?? $form->header,
                 'is_quiz' => 0,
@@ -761,7 +723,6 @@ class FormContoller extends Controller
                         $question_find = Question::find($question['question_id']);
                         if (!$question_find) {
                             return $this->returnError(202, 'this question ' . $question['question_id'] . ' is not exist');
-                            // return $this->returnError(202, 'this question is not exist');
                         }
 
                         $q_required = null;
@@ -1093,7 +1054,6 @@ class FormContoller extends Controller
             }
 
             $tempalte->update([
-                // 'form_type' => ($request->form_type == "classic form" ? '0' : '1'),
                 'image_header' => $image_header,
                 'header' => $request->header ?? $tempalte->header,
                 'is_quiz' => 0,
@@ -1207,7 +1167,6 @@ class FormContoller extends Controller
                         $question_find = Question::find($question['question_id']);
                         if (!$question_find) {
                             return $this->returnError(202, 'this question ' . $question['question_id'] . ' is not exist');
-                            // return $this->returnError(202, 'this question is not exist');
                         }
 
                         $q_required = null;
