@@ -459,17 +459,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://yaformelbanna.we-work.pro/api/get-form/50",
-							"protocol": "https",
+							"raw": "localhost:8000/api/get-form/1",
 							"host": [
-								"yaformelbanna",
-								"we-work",
-								"pro"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"get-form",
-								"50"
+								"1"
 							]
 						}
 					},
@@ -549,12 +547,12 @@
 								},
 								{
 									"key": "header",
-									"value": "test template 44",
+									"value": "test template updated",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "test template 44",
+									"value": "test template updated",
 									"type": "text"
 								},
 								{
@@ -569,8 +567,13 @@
 								},
 								{
 									"key": "msg",
-									"value": "success submit 44",
+									"value": "success submit updated",
 									"type": "text"
+								},
+								{
+									"key": "image_header",
+									"type": "file",
+									"src": "/E:/WhatsApp Image 2021-09-25 at 1.33.08 AM.jpeg"
 								}
 							]
 						},
@@ -594,7 +597,22 @@
 					"name": "append update form",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 1,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": [11,12,13]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:8000/api/auth/append-update-form/1",
 							"host": [
@@ -1030,7 +1048,7 @@
 				{
 					"name": "update quiz",
 					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [
 							{
 								"key": "authToken",
@@ -1043,143 +1061,43 @@
 							"formdata": [
 								{
 									"key": "form_type",
-									"value": "classic form",
-									"type": "default"
+									"value": "card form",
+									"type": "text"
+								},
+								{
+									"key": "header",
+									"value": "test template updated",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test template updated",
+									"type": "text"
+								},
+								{
+									"key": "style_theme",
+									"value": "defalut",
+									"type": "text"
+								},
+								{
+									"key": "font_family",
+									"value": "defalut-font",
+									"type": "text"
+								},
+								{
+									"key": "msg",
+									"value": "success submit updated",
+									"type": "text"
 								},
 								{
 									"key": "image_header",
 									"type": "file",
 									"src": "/E:/WhatsApp Image 2021-09-25 at 1.33.08 AM.jpeg"
-								},
-								{
-									"key": "header",
-									"value": "test template 1",
-									"type": "default"
-								},
-								{
-									"key": "description",
-									"value": "test template 1",
-									"type": "default"
-								},
-								{
-									"key": "logo",
-									"type": "file",
-									"src": "/E:/Capture.PNG"
-								},
-								{
-									"key": "style_theme",
-									"value": "defalut",
-									"type": "default"
-								},
-								{
-									"key": "font_family",
-									"value": "defalut-font",
-									"type": "default"
-								},
-								{
-									"key": "msg",
-									"value": "success submit",
-									"type": "default"
-								},
-								{
-									"key": "social_media[0][type]",
-									"value": "Facebook",
-									"type": "default"
-								},
-								{
-									"key": "social_media[0][url]",
-									"value": "facebook.com",
-									"type": "default"
-								},
-								{
-									"key": "social_media[1][type]",
-									"value": "Twitter",
-									"type": "default"
-								},
-								{
-									"key": "social_media[1][url]",
-									"value": "twitter.com",
-									"type": "default"
-								},
-								{
-									"key": "social_media[2][type]",
-									"value": "Instgram",
-									"type": "default"
-								},
-								{
-									"key": "social_media[2][url]",
-									"value": "instgram.com",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][type]",
-									"value": "question",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][description]",
-									"value": "Q1",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][question_type]",
-									"value": "Paragraph",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][required]",
-									"value": "true",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][focus]",
-									"value": "true",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][display_video]",
-									"value": "true",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][options][0][value]",
-									"value": "10",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][options][0][text]",
-									"value": "option 1",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][options][1][value]",
-									"value": "20",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][options][1][text]",
-									"value": "option 2",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][default_answer][0]",
-									"value": "cairo",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][default_answer][1]",
-									"value": "tanta",
-									"type": "default"
-								},
-								{
-									"key": "questions[0][default_answer][2]",
-									"value": "alex",
-									"type": "default"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/auth/update-quiz/1",
+							"raw": "localhost:8000/api/auth/update-quiz/2",
 							"host": [
 								"localhost"
 							],
@@ -1188,7 +1106,43 @@
 								"api",
 								"auth",
 								"update-quiz",
-								"1"
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "append update quiz",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91bmF1dGhcL2xvZ2luIiwiaWF0IjoxNjQxNDgwNjY0LCJuYmYiOjE2NDE0ODA2NjQsImp0aSI6IkpWM3ZkNUZtNVU1UnM4V3oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lZhXnx5Mf7JKoP2VGUzj9-vlrRujT8t2FZ_ErGMqdj4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"social_media\": [\r\n        {\r\n            \"type\": \"Facebook\",\r\n            \"url\": \"facebook.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Twitter\",\r\n            \"url\": \"twitter.com updated2\"\r\n        },\r\n        {\r\n            \"type\": \"Instgram\",\r\n            \"url\": \"instgram.com updated2\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"question_id\": 1,\r\n            \"type\": \"question updated2\",\r\n            \"question\": \"test updated2\",\r\n            \"description\": \"Q1 updated2\",\r\n            \"question_type\": \"Paragraph updated2\",\r\n            \"required\": false,\r\n            \"focus\": false,\r\n            \"display_video\": false,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 updated\",\r\n                    \"text\": \"option 1 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"20 updated\",\r\n                    \"text\": \"option 2 updated\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\",\r\n                \"tanta\",\r\n                \"alex\"\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"question\",\r\n            \"question\": \"test new\",\r\n            \"description\": \"Q1 new\",\r\n            \"question_type\": \"Paragraph\",\r\n            \"required\": true,\r\n            \"focus\": false,\r\n            \"display_video\": true,\r\n            \"options\": [\r\n                {\r\n                    \"value\": \"10 new\",\r\n                    \"text\": \"option 1 new\"\r\n                },\r\n                {\r\n                    \"value\": \"20 new\",\r\n                    \"text\": \"option 2 new\"\r\n                },\r\n                {\r\n                    \"value\": \"30 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                },\r\n                {\r\n                    \"value\": \"40 new\",\r\n                    \"text\": \"option 3 new option on form 1\"\r\n                }\r\n            ],\r\n             \"default_answer\": [\r\n                \"cairo\"\r\n            ]\r\n        }\r\n    ],\r\n    \"deleted_questions_id\": [15]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/append-update-quiz/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"append-update-quiz",
+								"2"
 							]
 						}
 					},

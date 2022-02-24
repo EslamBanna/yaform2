@@ -130,12 +130,12 @@ class FormContoller extends Controller
                         $q_type = "11";
                     }
                     $display_video = 0;
-                    if( isset($question['display_video'])){
+                    if (isset($question['display_video'])) {
                         $display_video = ($question['display_video'] == true ? 1 : 0);
                     }
                     $question_id = Question::insertGetId([
                         'form_id' => $template_id,
-                        'question'=> $question['question'],
+                        'question' => $question['question'],
                         'type' => $type,
                         'description' => $desc,
                         'question_type' => $q_type,
@@ -353,13 +353,13 @@ class FormContoller extends Controller
                         $q_type = "11";
                     }
                     $display_video = 0;
-                    if( isset($question['display_video'])){
+                    if (isset($question['display_video'])) {
                         $display_video = ($question['display_video'] == true ? 1 : 0);
                     }
                     $question_id = Question::insertGetId([
                         'form_id' => $form_id,
                         'type' => $type,
-                        'question'=> $question['question'],
+                        'question' => $question['question'],
                         'description' => $desc,
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
@@ -406,7 +406,7 @@ class FormContoller extends Controller
     public function getForms()
     {
         try {
-            $forms = Form::select('id', 'logo', 'header', 'form_type', 'description', 'updated_at', 'is_quiz','is_template')
+            $forms = Form::select('id', 'logo', 'header', 'form_type', 'description', 'updated_at', 'is_quiz', 'is_template')
                 ->where('user_id', Auth()->user()->id)
                 ->orderBy('id', 'DESC')->get();
             return $this->returnData('data', $forms);
@@ -547,13 +547,13 @@ class FormContoller extends Controller
                         $q_type = "11";
                     }
                     $display_video = 0;
-                    if( isset($question['display_video'])){
+                    if (isset($question['display_video'])) {
                         $display_video = ($question['display_video'] == true ? 1 : 0);
                     }
                     $question_id = Question::insertGetId([
                         'form_id' => $quiz_id,
                         'type' => $type,
-                        'question'=> $question['question'],
+                        'question' => $question['question'],
                         'description' => $desc,
                         'question_type' => $q_type,
                         'required' => ($question['required'] == true ? 1 : 0),
@@ -616,7 +616,6 @@ class FormContoller extends Controller
     {
         DB::beginTransaction();
         try {
-        return $request;
             $form = Form::find($formId);
             if (!$form) {
                 return $this->returnError('202', 'the form does not exist');
@@ -648,16 +647,16 @@ class FormContoller extends Controller
             }
 
             $form->update([
-                'form_type' => ($request->form_type == "classic form" ? '0' : '1'),
-                'image_header' => $image_header ?? "",
-                'header' => $request->header,
+                // 'form_type' => ($request->form_type == "classic form" ? '0' : '1'),
+                'image_header' => $image_header,
+                'header' => $request->header ?? $form->header,
                 'is_quiz' => 0,
                 'is_template' => 0,
-                'description' => $request->description,
+                'description' => $request->description ?? $form->description,
                 'logo' => $logo,
-                'style_theme' => $request->style_theme,
-                'font_family' => $request->font_family,
-                'msg' => $request->msg
+                'style_theme' => $request->style_theme ?? $form->style_theme,
+                'font_family' => $request->font_family ?? $form->font_family,
+                'msg' => $request->msg ?? $form->msg
             ]);
             DB::commit();
             return $this->returnSuccessMessage('updated successfully');
@@ -686,7 +685,7 @@ class FormContoller extends Controller
             }
 
             if ($request->has('social_media')) {
-                $form->socialMedia->delete();
+                $form->socialMedia()->delete();
                 foreach ($request->social_media as $link) {
                     SocialMediaLink::create([
                         'form_id' => $formId,
@@ -697,11 +696,6 @@ class FormContoller extends Controller
             }
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
-                    $desc = "";
-                    // if ($question['type'] == 'image' && $question->hasFile('description')) {
-                    //     $desc = $this->saveImage($question->description, 'question_images');
-                    // }
-                    $desc = $question['description'];
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
@@ -739,29 +733,86 @@ class FormContoller extends Controller
                     if ($type == '1' || $type == '2' || $type == '3') {
                         $q_type = "11";
                     }
-                    $question_find = Question::find($question['quiestion_id']);
-                    if (!$question_find) {
-                        return $this->returnError(202, 'this question is not exist');
-                    }
-                    $question_find->update([
-                        'type' => $type,
-                        'description' => $desc ?? $question['description'],
-                        'question_type' => $q_type,
-                        'required' => ($question['required'] == true ? 1 : 0),
-                        'focus' => ($question['focus'] == true ? 1 : 0),
-                        'display_video' => ($question['display_video'] == true ? 1 : 0)
-                    ]);
-                    if (isset($question['options'])) {
-                        foreach ($question['options'] as $option)
-                            $option_find = Option::find($option['option_id']);
-                        if (!$option_find) {
-                            return $this->returnError(202, 'this option is not exist');
+
+                    if (!isset($question['question_id'])) {
+                        $display_video = 0;
+                        if (isset($question['display_video'])) {
+                            $display_video = ($question['display_video'] == true ? 1 : 0);
                         }
-                        $option_find->update([
-                            'value' => $option['value'],
-                            'text' => $option['text']
+                        $question_id = Question::insertGetId([
+                            'form_id' => $form->id,
+                            'type' => $type,
+                            'question' => $question['question'],
+                            'description' => $question['description'],
+                            'question_type' => $q_type,
+                            'required' => ($question['required'] == true ? 1 : 0),
+                            'focus' => ($question['focus'] == true ? 1 : 0),
+                            'display_video' => $display_video
                         ]);
+                        if (isset($question['options'])) {
+                            foreach ($question['options'] as $option)
+                                Option::create([
+                                    'question_id' => $question_id,
+                                    'value' => $option['value'],
+                                    'text' => $option['text']
+                                ]);
+                        }
+                    } else {
+                        $question_find = Question::find($question['question_id']);
+                        if (!$question_find) {
+                            return $this->returnError(202, 'this question ' . $question['question_id'] . ' is not exist');
+                            // return $this->returnError(202, 'this question is not exist');
+                        }
+
+                        $q_required = null;
+                        if (isset($question['required'])) {
+                            $q_required = ($question['required'] == true ? 1 : 0);
+                        } else {
+                            $q_required = ($question_find->required == false ? 0 : 1);
+                        }
+
+                        $q_focus = null;
+                        if (isset($question['focus'])) {
+                            $q_focus = ($question['focus'] == true ? 1 : 0);
+                        } else {
+                            $q_focus = ($question_find->focus == true ? 1 : 0);
+                        }
+
+                        $display_video = null;
+                        if (isset($question['display_video'])) {
+                            $display_video = ($question['display_video'] == true ? 1 : 0);
+                        } else {
+                            $display_video = ($question_find->display_video == true ? 1 : 0);
+                        }
+                        $question_find->update([
+                            'type' => $type ?? $question_find->type,
+                            'description' => $question['description'] ?? $question_find->description,
+                            'question' => $question['question'] ?? $question_find->question,
+                            'question_type' => $q_type ?? $question_find->question_type,
+                            'required' => $q_required,
+                            'focus' => $q_focus,
+                            'display_video' => $display_video
+                        ]);
+                        if (isset($question['options'])) {
+                            $question_find->options()->delete();
+                            foreach ($question['options'] as $option) {
+                                Option::create([
+                                    'question_id' => $question_find['id'],
+                                    'value' => $option['value'],
+                                    'text' => $option['text']
+                                ]);
+                            }
+                        }
                     }
+                }
+            }
+            if ($request->has('deleted_questions_id')) {
+                foreach ($request->deleted_questions_id as $deleted_question_id) {
+                    $question_find = Question::find($deleted_question_id);
+                    if (!$question_find) {
+                        return $this->returnError(202, 'this question ' . $deleted_question_id . ' is not exist');
+                    }
+                    $question_find->delete();
                 }
             }
             DB::commit();
@@ -786,27 +837,8 @@ class FormContoller extends Controller
             if ($quiz->is_quiz == 0) {
                 return $this->returnError('204', 'this is not quiz');
             }
-            // if ($quiz->deleted == 1) {
-            //     return $this->returnError('205', 'the quiz is deleted before');
-            // }
-            // if ($quiz->updated == 1) {
-            //     return $this->returnError('206', 'the quiz is updated before');
-            // }
             if ($quiz->is_template == 1) {
-                return $this->returnError('207', 'this is template not form');
-            }
-            $quiz->update([
-                'updated' => 1
-            ]);
-            ##################################
-            $rules = [
-                'form_type' => 'required',
-                'header' => 'required',
-            ];
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()) {
-                $code = $this->returnCodeAccordingToInput($validator);
-                return $this->returnValidationError($code, $validator);
+                return $this->returnError('205', 'this is template not form');
             }
             $image_header = null;
             if ($request->hasFile('image_header')) {
@@ -816,23 +848,55 @@ class FormContoller extends Controller
             if ($request->hasFile('logo')) {
                 $logo = $this->saveImage($request->logo, 'logos');
             }
-            $quiz_id = Form::insertGetId([
-                'user_id' => Auth()->user()->id,
-                'form_type' => ($request->form_type == "classic form" ? '0' : '1'),
-                'image_header' => $image_header ?? "",
-                'header' => $request->header,
-                'is_quiz' => 1,
-                'is_template' => 0,
-                'description' => $request->description,
+            if ($image_header == null) {
+                $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/images_header/');
+                $image_header = substr($quiz->image_header, $photo_len);
+            }
+            if ($logo == null) {
+                $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/logos/');
+                $logo = substr($quiz->logo, $photo_len);
+            }
+
+            $quiz->update([
+                'image_header' => $image_header,
+                'header' => $request->header ?? $quiz->header,
+                'description' => $request->description ?? $quiz->description,
                 'logo' => $logo,
-                'style_theme' => $request->style_theme,
-                'font_family' => $request->font_family,
-                'msg' => $request->msg
+                'style_theme' => $request->style_theme ?? $quiz->style_theme,
+                'font_family' => $request->font_family ?? $quiz->font_family,
+                'msg' => $request->msg ?? $quiz->msg
             ]);
+            DB::commit();
+            return $this->returnSuccessMessage('updated successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function appendUpdateQuiz(Request $request, $formId)
+    {
+        DB::beginTransaction();
+        try {
+            $quiz = Form::find($formId);
+            if (!$quiz) {
+                return $this->returnError('202', 'the quiz does not exist');
+            }
+            if ($quiz->user_id != Auth()->user()->id) {
+                return $this->returnError('203', 'the quiz does not belongs to you');
+            }
+            if ($quiz->is_quiz == 0) {
+                return $this->returnError('204', 'this is not quiz');
+            }
+            if ($quiz->is_template == 1) {
+                return $this->returnError('205', 'this is template not quiz');
+            }
+
             if ($request->has('social_media')) {
+                $quiz->socialMedia()->delete();
                 foreach ($request->social_media as $link) {
                     SocialMediaLink::create([
-                        'form_id' => $quiz_id,
+                        'form_id' => $formId,
                         'type' => $link['type'],
                         'url' => $link['url']
                     ]);
@@ -840,10 +904,6 @@ class FormContoller extends Controller
             }
             if ($request->has('questions')) {
                 foreach ($request->questions as $question) {
-                    $desc = null;
-                    if ($question['type'] == 'image' && $question->hasFile('description')) {
-                        $desc = $this->saveImage($question->description, 'question_images');
-                    }
                     $type = null;
                     if ($question['type'] == 'question') {
                         $type = '0';
@@ -878,42 +938,118 @@ class FormContoller extends Controller
                     } elseif ($question['question_type'] == "Number") {
                         $q_type = "10";
                     }
-                    $question_id = Question::insertGetId([
-                        'form_id' => $quiz_id,
-                        'type' => $type,
-                        'question'=> $question['question'],
-                        'description' => $desc ?? $question['description'],
-                        'question_type' => $q_type,
-                        'required' => ($question['required'] == true ? 1 : 0),
-                        'focus' => ($question['focus'] == true ? 1 : 0),
-                        'display_video' => ($question['display_video'] == true ? 1 : 0)
-                    ]);
-                    if (isset($question['options'])) {
-                        foreach ($question['options'] as $option)
-                            Option::create([
-                                'question_id' => $question_id,
-                                'value' => $option['value'],
-                                'text' => $option['text']
-                            ]);
+                    if ($type == '1' || $type == '2' || $type == '3') {
+                        $q_type = "11";
                     }
-                    if (isset($question['default_answer'])) {
-                        if (is_array($question['default_answer'])) {
-                            foreach ($question['default_answer'] as $answer)
+
+                    if (!isset($question['question_id'])) {
+                        $display_video = 0;
+                        if (isset($question['display_video'])) {
+                            $display_video = ($question['display_video'] == true ? 1 : 0);
+                        }
+                        $question_id = Question::insertGetId([
+                            'form_id' => $quiz->id,
+                            'type' => $type,
+                            'question' => $question['question'],
+                            'description' => $question['description'],
+                            'question_type' => $q_type,
+                            'required' => ($question['required'] == true ? 1 : 0),
+                            'focus' => ($question['focus'] == true ? 1 : 0),
+                            'display_video' => $display_video
+                        ]);
+                        if (isset($question['options'])) {
+                            foreach ($question['options'] as $option)
+                                Option::create([
+                                    'question_id' => $question_id,
+                                    'value' => $option['value'],
+                                    'text' => $option['text']
+                                ]);
+                        }
+                        if (isset($question['default_answer'])) {
+                            if (is_array($question['default_answer'])) {
+                                foreach ($question['default_answer'] as $answer)
+                                    RightSolution::create([
+                                        'question_id' => $question_id,
+                                        'solution' => $answer,
+                                    ]);
+                            } else {
                                 RightSolution::create([
                                     'question_id' => $question_id,
-                                    'solution' => $answer,
+                                    'solution' => $question['default_answer'],
                                 ]);
+                            }
+                        }
+                    } else {
+                        $question_find = Question::find($question['question_id']);
+                        if (!$question_find) {
+                            return $this->returnError(202, 'this question ' . $question['question_id'] . ' is not exist');
+                        }
+
+                        $q_required = null;
+                        if (isset($question['required'])) {
+                            $q_required = ($question['required'] == true ? 1 : 0);
                         } else {
-                            RightSolution::create([
-                                'question_id' => $question_id,
-                                'solution' => $question['default_answer'],
-                            ]);
+                            $q_required = ($question_find->required == false ? 0 : 1);
+                        }
+
+                        $q_focus = null;
+                        if (isset($question['focus'])) {
+                            $q_focus = ($question['focus'] == true ? 1 : 0);
+                        } else {
+                            $q_focus = ($question_find->focus == true ? 1 : 0);
+                        }
+
+                        $display_video = null;
+                        if (isset($question['display_video'])) {
+                            $display_video = ($question['display_video'] == true ? 1 : 0);
+                        } else {
+                            $display_video = ($question_find->display_video == true ? 1 : 0);
+                        }
+                        $question_find->update([
+                            'type' => $type ?? $question_find->type,
+                            'description' => $question['description'] ?? $question_find->description,
+                            'question' => $question['question'] ?? $question_find->question,
+                            'question_type' => $q_type ?? $question_find->question_type,
+                            'required' => $q_required,
+                            'focus' => $q_focus,
+                            'display_video' => $display_video
+                        ]);
+                        if (isset($question['options'])) {
+                            $question_find->options()->delete();
+                            foreach ($question['options'] as $option)
+                                Option::create([
+                                    'question_id' => $question_find['id'],
+                                    'value' => $option['value'],
+                                    'text' => $option['text']
+                                ]);
+                        }
+                        if (isset($question['default_answer'])) {
+                            $question_find->rightSolutions()->delete();
+                            if (is_array($question['default_answer'])) {
+                                foreach ($question['default_answer'] as $answer)
+                                    RightSolution::create([
+                                        'question_id' => $question_find['id'],
+                                        'solution' => $answer,
+                                    ]);
+                            } else {
+                                RightSolution::create([
+                                    'question_id' => $question_find['id'],
+                                    'solution' => $question['default_answer'],
+                                ]);
+                            }
                         }
                     }
                 }
             }
-            ##################################
-            // $this->createQuiz($request);
+            if ($request->has('deleted_questions_id')) {
+                foreach ($request->deleted_questions_id as $deleted_question_id) {
+                    $question_find = Question::find($deleted_question_id);
+                    if (!$question_find) {
+                        return $this->returnError(202, 'this question' . $deleted_question_id . ' is not exist');
+                    }
+                    $question_find->delete();
+                }
+            }
             DB::commit();
             return $this->returnSuccessMessage('updated successfully');
         } catch (\Exception $e) {
@@ -921,5 +1057,4 @@ class FormContoller extends Controller
             return $this->returnError('201', $e->getMessage());
         }
     }
-
 }

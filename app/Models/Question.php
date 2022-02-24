@@ -26,6 +26,10 @@ class Question extends Model
         'display_video' => 'boolean'
     ];
 
+    // public function getRequiredAttribute($value){
+    //     return ($value == 0? false : true);
+    // }
+
     public function setTypeAttribute($value)
     {
         if ($value == 'question') {
@@ -141,6 +145,10 @@ class Question extends Model
 
             $question->options()->each(function ($options) {
                 $options->delete();
+            });
+
+            $question->answers()->each(function ($answers) {
+                $answers->delete();
             });
         });
     }
