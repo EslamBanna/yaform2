@@ -64,13 +64,13 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
     Route::get('/get-question-responses/{questionId}', [AnswerContoller::class, 'getQuestionResponses']);
     Route::get('/get-individual-responses/{submitId}', [AnswerContoller::class, 'getIndividualResponses']);
 
-
     Route::get('/export-excel/{formId}', [ExportController::class, 'exportExcel']);
     Route::get('/show-pdf/{formId}', [ExportController::class, 'showPdf']);
-    Route::get('/export-pdf/{formId}', [ExportController::class, 'exportPdf']);
+
+  
 });
 
-
+Route::get('/export-pdf/{formId}', [ExportController::class, 'exportPdf']);
 
 Route::get('/export-vcf/{formId}', [ExportController::class, 'exportVcf']);
 

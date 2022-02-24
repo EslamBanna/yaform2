@@ -8,8 +8,11 @@ use App\Exports\ResponsesExport;
 use App\Models\Answer;
 use App\Models\Form;
 use App\Models\Question;
-use Excel;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+
+// use Excel;
+// use PDF;
 
 class ExportController extends Controller
 {
@@ -74,8 +77,9 @@ class ExportController extends Controller
         try {
             $data = $this->prepareData($formId);
             $response = $data['responses'];
+            $show_button = true;
             $form_questions = $data['form_questions'];
-            return view('pdf', compact('response', 'form_questions', 'formId'));
+            return view('pdf', compact('response', 'form_questions', 'formId','show_button'));
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
         }
@@ -87,7 +91,7 @@ class ExportController extends Controller
             $data = $this->prepareData($formId);
             $response = $data['responses'];
             $form_questions = $data['form_questions'];
-            $pdf = PDF::loadView('pdf', compact('response', 'form_questions', 'formId'));
+            $pdf = Pdf::loadView('pdf', compact('response', 'form_questions', 'formId'));
             return $pdf->download('pdf_file.pdf');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());

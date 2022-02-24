@@ -11,9 +11,11 @@
 <body>
     <div class="container mt-5">
         <h2 class="text-center mb-3">Eslam Elbanna Coding</h2>
+        @isset($show_button)
         <div class="d-flex justify-content-end mb-4">
             <a class="btn btn-primary" href="{{ URL::to('/api/export-pdf', $formId) }}">Export to PDF</a>
-        </div>
+        </div>     
+        @endisset
         <table class="table table-bordered mb-5">
             <thead>
                 <tr class="table-danger">
