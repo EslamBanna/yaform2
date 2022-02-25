@@ -64,24 +64,24 @@ class AnswerContoller extends Controller
 
     public function uploadImage(Request $request)
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
         try {
             $file_name = '';
             if (!$request->hasFile('image')) {
                 return $this->returnError(202, 'you must send the file');
             }
             $file_name = $this->saveImage($request->image, 'question_images');
-            DB::commit();
+            // DB::commit();
 
-            $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-            $full_path = ($file_name == null ? '' : $actual_link . 'images/question_images/' . $file_name);
-            $data = [
-                'file_name' => $file_name,
-                'full_path' => $full_path
-            ];
-            return $this->returnData('data', $data);
+            // $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+            // $full_path = ($file_name == null ? '' : $actual_link . 'images/question_images/' . $file_name);
+            // $data = [
+            //     'file_name' => $file_name,
+            //     'full_path' => $full_path
+            // ];
+            return $this->returnData('data', $file_name);
         } catch (\Exception $e) {
-            DB::rollBack();
+            // DB::rollBack();
             return $this->returnError('201', $e->getMessage());
         }
     }

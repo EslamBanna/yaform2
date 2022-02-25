@@ -82,16 +82,22 @@ class Question extends Model
             return "";
         }
     }
+    // public function getDescriptionAttribute($value)
+    // {
+
+    //     if ($this->attributes['type'] == '2') {
+    //         $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+    //         return ($value == null ? '' : $actual_link . 'images/question_images/' . $value);
+    //     } else {
+    //         return $value ?? "";
+    //     }
+    // }
+
     public function getDescriptionAttribute($value)
     {
-
-        if ($this->attributes['type'] == '2') {
-            $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-            return ($value == null ? '' : $actual_link . 'images/question_images/' . $value);
-        } else {
-            return $value ?? "";
-        }
+        return $value ?? "";
     }
+
     public function getQuestionTypeAttribute($value)
     {
         if ($value == '0') {
