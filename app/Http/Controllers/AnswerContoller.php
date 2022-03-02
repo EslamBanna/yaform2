@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Answer;
 use App\Models\Form;
 use App\Models\Question;
+use App\Models\RightSolution;
 use App\Models\Submit;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
@@ -28,34 +29,81 @@ class AnswerContoller extends Controller
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
-            $form = Form::find($request->form_id);
+            $form = Form::withCount('Questions')->find($request->form_id);
             if (!$form) {
                 return $this->returnError('202', 'the form does not exist');
             }
             $submit_id = Submit::insertGetId([
                 'form_id' => $request->form_id
             ]);
-            foreach ($request->answers as $answer) {
-                // multiple answer
-                if (is_array($answer['answer'])) {
-                    foreach ($answer['answer'] as $ans) {
+            $score = 0;
+            // return $form;
+            $marks = $form['questions_count'];
+            $output_msg = 'submit success';
+            if ($form['is_quiz'] == true) {
+                // return 'quiz';
+                foreach ($request->answers as $answer) {
+                    // multiple answer
+                    if (is_array($answer['answer'])) {
+                        $iternal_score = 0;
+                        $iternal_mark = RightSolution::where('question_id', $answer['question_id'])->count();
+                        foreach ($answer['answer'] as $ans) {
+                            Answer::create([
+                                'submit_id' => $submit_id,
+                                'question_id' => $answer['question_id'],
+                                'answer' => $ans
+                            ]);
+                            $right_answer = RightSolution::where('question_id', $answer['question_id'])
+                                ->where('solution', $ans)
+                                ->count();
+                            if ($right_answer > 0) {
+                                $iternal_score++;
+                            }
+                        }
+                        if ($iternal_score == $iternal_mark) {
+                            $score++;
+                        }
+                    } else {
+                        // one answer
                         Answer::create([
                             'submit_id' => $submit_id,
                             'question_id' => $answer['question_id'],
-                            'answer' => $ans
+                            'answer' => $answer['answer']
+                        ]);
+                        $right_answer = RightSolution::where('question_id', $answer['question_id'])
+                            ->where('solution', $answer['answer'])
+                            ->get();
+                        if (count($right_answer) > 0) {
+                            $score++;
+                        }
+                    }
+                }
+                $output_msg = "Your Score is " . $score . " from " . $marks;
+            } else {
+                foreach ($request->answers as $answer) {
+                    // multiple answer
+                    if (is_array($answer['answer'])) {
+                        foreach ($answer['answer'] as $ans) {
+                            Answer::create([
+                                'submit_id' => $submit_id,
+                                'question_id' => $answer['question_id'],
+                                'answer' => $ans
+                            ]);
+                        }
+                    } else {
+                        // one answer
+                        Answer::create([
+                            'submit_id' => $submit_id,
+                            'question_id' => $answer['question_id'],
+                            'answer' => $answer['answer']
                         ]);
                     }
-                } else {
-                    // one answer
-                    Answer::create([
-                        'submit_id' => $submit_id,
-                        'question_id' => $answer['question_id'],
-                        'answer' => $answer['answer']
-                    ]);
                 }
             }
             DB::commit();
-            return $this->returnSuccessMessage('submit success');
+
+
+            return $this->returnSuccessMessage($output_msg);
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->returnError('201', $e->getMessage());
