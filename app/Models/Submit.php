@@ -11,7 +11,9 @@ class Submit extends Model
     protected $table = 'submits';
     protected $fillable = [
         // 'user_id',
-        'form_id'
+        'form_id',
+        'score',
+        'mark'
     ];
 
     public function answers()

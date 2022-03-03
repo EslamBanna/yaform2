@@ -29,19 +29,23 @@ class AnswerContoller extends Controller
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
-            $form = Form::withCount('Questions')->find($request->form_id);
+            $form = Form::withCount(['Questions' => function ($q) {
+                $q->where('type', '0')
+                    ->where('question_type', '!=', '7')
+                    ->where('question_type', '!=', '8')
+                    ->where('question_type', '!=', '9');
+            }])->find($request->form_id);
             if (!$form) {
                 return $this->returnError('202', 'the form does not exist');
             }
+            // return $form;
             $submit_id = Submit::insertGetId([
                 'form_id' => $request->form_id
             ]);
-            $score = 0;
-            // return $form;
-            $marks = $form['questions_count'];
             $output_msg = 'submit success';
             if ($form['is_quiz'] == true) {
-                // return 'quiz';
+                $score = 0;
+                $marks = $form['questions_count'];
                 foreach ($request->answers as $answer) {
                     // multiple answer
                     if (is_array($answer['answer'])) {
@@ -60,7 +64,7 @@ class AnswerContoller extends Controller
                                 $iternal_score++;
                             }
                         }
-                        if ($iternal_score == $iternal_mark) {
+                        if ($iternal_score == $iternal_mark && $iternal_score != 0) {
                             $score++;
                         }
                     } else {
@@ -78,6 +82,11 @@ class AnswerContoller extends Controller
                         }
                     }
                 }
+                $submit = Submit::find($submit_id);
+                $submit->update([
+                    'score' => $score,
+                    'mark' => $marks
+                ]);
                 $output_msg = "Your Score is " . $score . " from " . $marks;
             } else {
                 foreach ($request->answers as $answer) {
