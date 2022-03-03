@@ -13,7 +13,7 @@ class Submit extends Model
         // 'user_id',
         'form_id',
         'score',
-        'mark'
+        'marks'
     ];
 
     public function answers()

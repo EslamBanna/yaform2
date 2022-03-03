@@ -85,7 +85,7 @@ class AnswerContoller extends Controller
                 $submit = Submit::find($submit_id);
                 $submit->update([
                     'score' => $score,
-                    'mark' => $marks
+                    'marks' => $marks
                 ]);
                 $output_msg = "Your Score is " . $score . " from " . $marks;
             } else {

@@ -19,7 +19,7 @@ class CreateSubmitsTable extends Migration
             // $table->integer('user_id');
             $table->integer('form_id');
             $table->integer('score')->default(0);
-            $table->integer('mark')->default(0);
+            $table->integer('marks')->default(0);
             // $table->timestamps();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
