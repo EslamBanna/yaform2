@@ -64,6 +64,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'checkAuth:api-user'], functio
 
     Route::get('/get-summary-responses/{formId}', [AnswerContoller::class, 'getSummaryResponses']);
     Route::get('/get-question-responses/{questionId}', [AnswerContoller::class, 'getQuestionResponses']);
+    Route::get('/get-submits-for-from/{formId}', [AnswerContoller::class, 'getSubmitsForFrom']);
     Route::get('/get-individual-responses/{submitId}', [AnswerContoller::class, 'getIndividualResponses']);
 
     Route::get('/export-excel/{formId}', [ExportController::class, 'exportExcel']);

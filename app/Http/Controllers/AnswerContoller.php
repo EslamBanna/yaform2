@@ -182,6 +182,20 @@ class AnswerContoller extends Controller
         }
     }
 
+    public function getSubmitsForFrom($formId)
+    {
+        try {
+            $form = Form::find($formId);
+            if (!$form) {
+                return $this->returnError(202, 'this form is not exist');
+            }
+            $subimts = Submit::where('form_id', $formId)->get();
+            return $this->returnData('data', $subimts);
+        } catch (\Exception $e) {
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
     public function getIndividualResponses($submitId)
     {
         try {
