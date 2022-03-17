@@ -189,7 +189,9 @@ class AnswerContoller extends Controller
             if (!$form) {
                 return $this->returnError(202, 'this form is not exist');
             }
-            $subimts = Submit::where('form_id', $formId)->get();
+            $subimts = Submit::select('id')
+                ->where('form_id', $formId)
+                ->get();
             return $this->returnData('data', $subimts);
         } catch (\Exception $e) {
             return $this->returnError('201', $e->getMessage());
