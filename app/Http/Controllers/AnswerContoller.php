@@ -148,21 +148,24 @@ class AnswerContoller extends Controller
         try {
             $form = Form::with(['Questions' => function ($q) {
                 $q->with(['options', 'answers' => function ($k) {
-                    $k->select('id', 'answer', 'submit_id','question_id')
-                        ->with('testRelated')
+                    $k->select('id', 'answer', 'submit_id', 'question_id')
+                        ->with('relatedAnswers')
                         ->selectRaw('count(answer) as repeat_count')
                         ->groupBy('answer')
-                        // ->orderBy('qty', 'DESC')
                         ->get();
                 }])
-                    // ->has('options')
                     ->with('options')
-                    ->withCount('answers as question_responses_count');
+                    // ->groupBy('question')
+                    ->with('dummydata');
+                // ->withCount('answersCount');
             }])
                 ->withCount('submits as response_count')
                 ->find($formId);
             if (!$form) {
                 return $this->returnError(202, 'this form does not exist');
+            }
+            foreach ($form['questions'] as $question) {
+                $question['question_response_count'] =  $question['dummydata']->count();
             }
             return $this->returnData('data', $form);
         } catch (\Exception $e) {
