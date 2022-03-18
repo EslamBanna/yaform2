@@ -148,7 +148,8 @@ class AnswerContoller extends Controller
         try {
             $form = Form::with(['Questions' => function ($q) {
                 $q->with(['options', 'answers' => function ($k) {
-                    $k->select('answer', 'submit_id', 'question_id')
+                    $k->select('id', 'answer', 'submit_id','question_id')
+                        ->with('testRelated')
                         ->selectRaw('count(answer) as repeat_count')
                         ->groupBy('answer')
                         // ->orderBy('qty', 'DESC')
