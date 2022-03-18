@@ -30,8 +30,8 @@ class Answer extends Model
     {
         // return $this->hasMany(Answer::class, 'answer', 'answer')->where('question_id', '=' , $this->question_id);
         return $this->hasMany(Answer::class, 'answer', 'answer')
-            ->select('id', 'question_id', 'answer', 'submit_id');
-        // ->where('question_id', '=' , $this->question_id);
+            ->select('id', 'question_id', 'answer', 'submit_id')
+        ->where('question_id', '=' , $this->question_id);
         // ->orWhere('question_id', '=' ,$this->question_id);
     }
 

@@ -154,9 +154,9 @@ class AnswerContoller extends Controller
                         ->groupBy('answer')
                         ->get();
                 }])
-                    ->with('options')
+                    ->with('options');
                     // ->groupBy('question')
-                    ->with('dummydata');
+                    // ->withCount('dummydata');
                 // ->withCount('answersCount');
             }])
                 ->withCount('submits as response_count')
@@ -165,7 +165,14 @@ class AnswerContoller extends Controller
                 return $this->returnError(202, 'this form does not exist');
             }
             foreach ($form['questions'] as $question) {
-                $question['question_response_count'] =  $question['dummydata']->count();
+                $question['question_response_count'] =  count($question['dummydata']);
+                unset($question['dummydata']);
+                $question['options'] =  $question['options'];
+                // $question['distinctAnswers'] =  $question['distinctAnswers'];
+                foreach ($question['distinctAnswers'] as $answer) {
+                    $answer['this_answer_count'] = count($answer['relatedAnswers']);
+                    $answer['related_answers'] = $answer['relatedAnswers'];
+                }
             }
             return $this->returnData('data', $form);
         } catch (\Exception $e) {

@@ -140,9 +140,15 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class, 'question_id', 'id');
     }
+
+    public function distinctAnswers()
+    {
+        return $this->hasMany(Answer::class, 'question_id', 'id')->groupBy(['question_id','answer']);
+    }
+
     public function dummydata()
     {
-        return $this->hasMany(Answer::class, 'question_id', 'id')->groupBy('question_id');
+        return $this->hasMany(Answer::class, 'question_id', 'id')->groupBy(['question_id', 'submit_id']);
     }
 
     public static function boot()
