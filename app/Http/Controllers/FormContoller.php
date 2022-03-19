@@ -696,7 +696,7 @@ class FormContoller extends Controller
                         $q_type = "11";
                     }
 
-                    if (!isset($question['question_id'])) {
+                    if (isset($question['new_question'])) {
                         $display_video = 0;
                         if (isset($question['display_video'])) {
                             $display_video = ($question['display_video'] == true ? 1 : 0);
@@ -720,9 +720,9 @@ class FormContoller extends Controller
                                 ]);
                         }
                     } else {
-                        $question_find = Question::find($question['question_id']);
+                        $question_find = Question::find($question['id']);
                         if (!$question_find) {
-                            return $this->returnError(202, 'this question ' . $question['question_id'] . ' is not exist');
+                            return $this->returnError(202, 'this question ' . $question['id'] . ' is not exist');
                         }
 
                         $q_required = null;
@@ -903,7 +903,7 @@ class FormContoller extends Controller
                         $q_type = "11";
                     }
 
-                    if (!isset($question['question_id'])) {
+                    if (isset($question['new_question'])) {
                         $display_video = 0;
                         if (isset($question['display_video'])) {
                             $display_video = ($question['display_video'] == true ? 1 : 0);
@@ -941,9 +941,9 @@ class FormContoller extends Controller
                             }
                         }
                     } else {
-                        $question_find = Question::find($question['question_id']);
+                        $question_find = Question::find($question['id']);
                         if (!$question_find) {
-                            return $this->returnError(202, 'this question ' . $question['question_id'] . ' is not exist');
+                            return $this->returnError(202, 'this question ' . $question['id'] . ' is not exist');
                         }
 
                         $q_required = null;
@@ -1140,7 +1140,7 @@ class FormContoller extends Controller
                         $q_type = "11";
                     }
 
-                    if (!isset($question['question_id'])) {
+                    if (isset($question['new_question'])) {
                         $display_video = 0;
                         if (isset($question['display_video'])) {
                             $display_video = ($question['display_video'] == true ? 1 : 0);
@@ -1164,9 +1164,9 @@ class FormContoller extends Controller
                                 ]);
                         }
                     } else {
-                        $question_find = Question::find($question['question_id']);
+                        $question_find = Question::find($question['id']);
                         if (!$question_find) {
-                            return $this->returnError(202, 'this question ' . $question['question_id'] . ' is not exist');
+                            return $this->returnError(202, 'this question ' . $question['id'] . ' is not exist');
                         }
 
                         $q_required = null;

@@ -155,8 +155,8 @@ class AnswerContoller extends Controller
                         ->get();
                 }])
                     ->with('options');
-                    // ->groupBy('question')
-                    // ->withCount('dummydata');
+                // ->groupBy('question')
+                // ->withCount('dummydata');
                 // ->withCount('answersCount');
             }])
                 ->withCount('submits as response_count')
@@ -219,6 +219,20 @@ class AnswerContoller extends Controller
                 return $this->returnError(202, 'this submit does not exist');
             }
             return $this->returnData('data', $submit);
+        } catch (\Exception $e) {
+            return $this->returnError('201', $e->getMessage());
+        }
+    }
+
+    public function deleteSubmit($submitId)
+    {
+        try {
+            $submit = Submit::find($submitId);
+            if (!$submit) {
+                return $this->returnError(202, 'this submit does not exist');
+            }
+            $submit->delete();
+            return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
             return $this->returnError('201', $e->getMessage());
         }

@@ -8,6 +8,7 @@ use App\Exports\ResponsesExport;
 use App\Models\Answer;
 use App\Models\Form;
 use App\Models\Question;
+use App\Models\Submit;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use JeroenDesloovere\VCard\VCard;
@@ -48,12 +49,12 @@ class ExportController extends Controller
                             }
                             $pointer++;
                             if ($i == $answer['answer_len'] - 1) {
-                                $response[$ind]['test' . $index] = $te;
+                                $response[$ind][$index] = $te;
                             }
                         }
                     } else {
                         $pointer++;
-                        $response[$ind]['test' . $index] = $answer['answer'];
+                        $response[$ind][$index] = $answer['answer'];
                     }
                 }
             }
@@ -71,6 +72,56 @@ class ExportController extends Controller
     {
         try {
             $data = $this->prepareData($formId);
+            return Excel::download(new ResponsesExport($data['form_questions'], collect($data['responses'])), 'form_answers.xlsx');
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
+
+    public function exportExcelForOneResponse($submitId)
+    {
+        try {
+            $check_submit = Submit::find($submitId);
+            if (!$check_submit) {
+                return $this->returnError(202, 'this submit is not exist');
+            }
+            $responses_unique_question = Answer::where('submit_id', $submitId)
+                ->select('*')
+                ->selectRaw('count(question_id) as answer_len')
+                ->groupBy(['question_id', 'submit_id'])
+                ->get();
+
+            $all_responses_question = Answer::where('submit_id', $submitId)
+                ->get();
+            $response = [];
+            $pointer = 0;
+            foreach ($responses_unique_question as $index => $resp) {
+                if ($resp['answer_len'] > 1) {
+                    $te = '';
+                    for ($i = 0; $i < $resp['answer_len']; $i++) {
+                        if ($i == 0) {
+                            $te = $all_responses_question[$pointer]['answer'];
+                        } else {
+                            $te = $te . ',' . $all_responses_question[$pointer]['answer'];
+                        }
+                        $pointer++;
+                        if ($i == $resp['answer_len'] - 1) {
+                            $response[$index] = $te;
+                        }
+                    }
+                } else {
+                    $response[$index] = $all_responses_question[$pointer]['answer'];
+                    $pointer++;
+                }
+            }
+            $response = [
+                $response
+            ];
+            $form_questions = Question::select('id', 'question')->where('form_id', $check_submit['form_id'])->get();
+            $data = [
+                'responses' => $response,
+                'form_questions' => $form_questions
+            ];
             return Excel::download(new ResponsesExport($data['form_questions'], collect($data['responses'])), 'form_answers.xlsx');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
@@ -103,6 +154,20 @@ class ExportController extends Controller
         }
     }
 
+    public function showPdfForOneResponse($formId)
+    {
+        try {
+            $data = $this->prepareData($formId);
+            // $data = 
+            $response = $data['responses'];
+            $show_button = true;
+            $form_questions = $data['form_questions'];
+            return view('pdf', compact('response', 'form_questions', 'formId', 'show_button'));
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
+
     public function exportVcf($formId)
     {
         try {
@@ -126,7 +191,7 @@ class ExportController extends Controller
                     ->orWhere('question_id', $q_phone['id'])->get();
             }])->find($formId);
 
-            $formatter = new Formatter(new VcfFormatter(), 'yaform-vcard-export '. $form['header']);
+            $formatter = new Formatter(new VcfFormatter(), 'yaform-vcard-export ' . $form['header']);
             foreach ($form['submits'] as $submit) {
                 $vcard = null;
                 $pointer = 0;
