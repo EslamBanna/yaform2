@@ -27,6 +27,7 @@ class User extends Authenticatable implements JWTSubject
         'img_src',
         'url',
         'country',
+        'gender',
         'business_category',
         'year_dob',
         'month_dob',
@@ -84,6 +85,10 @@ class User extends Authenticatable implements JWTSubject
         return $value ?? "";
     }
     public function getPhoneAttribute($value)
+    {
+        return $value ?? "";
+    }
+    public function getGenderAttribute($value)
     {
         return $value ?? "";
     }

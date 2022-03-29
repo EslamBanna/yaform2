@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('img_src')->nullable();
             $table->string('url')->nullable();
             $table->string('country')->nullable();
+            $table->string('gender')->nullable();
             $table->string('business_category')->nullable();
             $table->string('year_dob')->nullable();
             $table->string('month_dob')->nullable();
