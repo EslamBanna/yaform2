@@ -129,7 +129,7 @@ class UserContoller extends Controller
                 'name' => $request->name ?? $user->name,
                 'email' => $request->email ?? $user->email,
                 'phone' => $request->phone ?? $user->phone,
-                'password' => bcrypt($request->password) ?? $user->password,
+                // 'password' => bcrypt($request->password) ?? $user->password,
                 'num_of_employees' => $request->num_of_employees ?? $user->num_of_employees,
                 'img_src' => $img_src ?? '',
                 'url' => $request->url ?? $user->url,
