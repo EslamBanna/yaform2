@@ -131,7 +131,7 @@ class UserContoller extends Controller
                 'phone' => $request->phone ?? $user->phone,
                 // 'password' => bcrypt($request->password) ?? $user->password,
                 'num_of_employees' => $request->num_of_employees ?? $user->num_of_employees,
-                'img_src' => $img_src ?? '',
+                // 'img_src' => $img_src ?? '',
                 'url' => $request->url ?? $user->url,
                 'country' => $request->country ?? $user->country,
                 'gender' => $request->gender ?? $user->gender,
@@ -168,7 +168,7 @@ class UserContoller extends Controller
                 'reset_password_code' => $code
             ]);
             // send mail
-            $reset_link = "http://localhost:8080/reset-password/" . $user->id;
+            $reset_link = "http://yaforms.we-work.pro/reset-password/" . $user->id;
             Mail::to($request->email)->send(new VerficationMail($code, $user->name, $user->email, $reset_link));
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
