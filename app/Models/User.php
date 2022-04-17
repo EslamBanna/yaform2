@@ -29,6 +29,7 @@ class User extends Authenticatable implements JWTSubject
         'country',
         'gender',
         'business_category',
+        'company_name',
         'year_dob',
         'month_dob',
         'day_dob',
@@ -112,6 +113,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $value ?? "";
     }
+    public function getCompanyNameAttribute($value)
+    {
+        return $value ?? "";
+    }
     public function getYearDobAttribute($value)
     {
         return $value ?? "";
@@ -124,5 +129,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return $value ?? "";
     }
-    
 }

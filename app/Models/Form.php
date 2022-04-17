@@ -14,6 +14,7 @@ class Form extends Model
         'form_type',
         'image_header',
         'header',
+        'ar_header',
         'is_quiz',
         'is_template',
         'description',
@@ -61,6 +62,11 @@ class Form extends Model
     {
         return $value ?? "";
     }
+    public function getArHeaderAttribute($value)
+    {
+        return $value ?? "";
+    }
+    
     public function getDescriptionAttribute($value)
     {
         return $value ?? "";

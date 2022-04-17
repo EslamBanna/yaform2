@@ -46,6 +46,7 @@ class UserContoller extends Controller
                 'country' => $request->country,
                 'gender' => $request->gender,
                 'business_category' => $request->business_category,
+                'company_name' => $request->company_name ?? "",
                 'year_dob' => $request->year_dob,
                 'month_dob' => $request->month_dob,
                 'day_dob' => $request->day_dob,
@@ -136,6 +137,7 @@ class UserContoller extends Controller
                 'country' => $request->country ?? $user->country,
                 'gender' => $request->gender ?? $user->gender,
                 'business_category' => $request->business_category ?? $user->business_category,
+                'company_name' => $request->company_name ?? $user->company_name,
                 'year_dob' => $request->year_dob ?? $user->year_dob,
                 'month_dob' => $request->month_dob ?? $user->month_dob,
                 'day_dob' => $request->day_dob ?? $user->day_dob
